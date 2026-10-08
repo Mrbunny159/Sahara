@@ -1,0 +1,36 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isSignedIn() { return request.auth != null; }
+    function isOwner(uidField) { return isSignedIn() && request.auth.uid == uidField; }
+
+    match /users/{uid} {
+      allow read, write: if isOwner(uid);
+    }
+
+    match /journals/{id} {
+      allow create: if isSignedIn() && request.resource.data.uid == request.auth.uid;
+      allow read, update, delete: if isOwner(resource.data.uid);
+    }
+
+    match /moods/{id} {
+      allow create: if isSignedIn() && request.resource.data.uid == request.auth.uid;
+      allow read, delete: if isOwner(resource.data.uid);
+    }
+
+    match /bookings/{id} {
+      allow create: if isSignedIn() && request.resource.data.uid == request.auth.uid;
+      allow read, delete: if isOwner(resource.data.uid);
+    }
+
+    match /posts/{id} {
+      allow read: if true;                                  // public feed
+      allow create: if isSignedIn() && request.resource.data.uid == request.auth.uid;
+      allow update: if isSignedIn();                        // likes
+      allow delete: if isOwner(resource.data.uid);
+    }
+
+    match /{document=**} { allow read, write: if false; }   // block everything else
+  }
+}
