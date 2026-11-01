@@ -1,61 +1,62 @@
-# 🧠 Sahara — Mental Wellness Platform
+# 🧠 Sahara — Mental Wellness Support Platform
 
-> **"Your Mind, Our Priority"**  
-> A compassionate, accessible, and privacy-focused Progressive Web Application (PWA) designed to support everyday mental well-being, mood awareness, and emotional health.
+> **"जब कोई नहीं, तब सहारा"**  
+> India's first all-generation mental wellness companion, designed for teenagers aged 13 to elders over 70. Built with uncompromising privacy, cultural warmth, and zero judgment.
 
 ---
 
 ## 🌟 Overview
 
-**Sahara** provides a safe, welcoming digital space to help users understand, monitor, and nurture their mental well-being. Built as a lightweight, fast, and mobile-friendly Progressive Web App, Sahara brings essential self-care tools directly to the browser—no heavy downloads required.
+**Sahara** provides a serene, private, and culturally empathetic digital sanctuary to help Indian families monitor, nurture, and reclaim their mental peace. Re-architected with **React 19 + Vite**, Sahara delivers a seamless, responsive experience across all screen sizes (mobile, tablet, desktop).
 
-Whether you want to track your daily emotional state, write down your thoughts, unwind with guided relaxation exercises, connect with certified counsellors, or find solidarity in a supportive community, Sahara is built to walk with you every step of the way.
+### 🧭 User Journey Flow
+1. **Landing Page:** Comprehensive sanctuary introduction featuring the 6 Pillars of Wellness, Generational Care (Students, Working Adults, Elders), Indian Mental Health realities ("Log kya kahenge"), Meet Mitra, and Founder Commitments.
+2. **Authentication:** Frictionless access via Email/Password, Google Sign-In, or 1-tap Anonymous Guest Mode.
+3. **Logo & Splash Screen Animation:** Immersive transition featuring the official Sahara Logo, radiant glowing aura, Hindi script tagline (*"जब कोई नहीं, तब सहारा"*), and calming progress loader.
+4. **Web App Sanctuary:** Personal dashboard, daily mood tracker, private journal, Mitra AI companion, guided 4-4-4-4 box breathing, verified therapist directory, and support circles.
 
 ---
 
-## ✨ Features
+## ✨ Core Features
 
-### 📈 Daily Mood Tracking & Insights
-- **Interactive Check-In:** Log daily mood scores through intuitive prompts and interactive assessments.
-- **Weekly Trend Visualization:** Visual mood charts displaying trends over time.
-- **Actionable Insights:** Personalized wellness suggestions based on your logged state.
+### 📈 Daily Mood Tracking & Trend Curve (Feel)
+- **5-Point Mood Scale:** Check in with intuitive emojis (Low 😔, Uneasy 😕, Okay 😐, Good 🙂, Great 😊).
+- **14-Day Visual Trend:** Interactive SVG trend curve mapping emotional trajectories.
+- **Actionable Insights:** Dynamically calculated reflection notes based on rolling check-in averages.
 
-### 📓 Private Journal
-- **Expressive Writing:** Write and save journal entries to release stress and reflect on daily thoughts.
-- **Entry History:** Revisit past entries to observe personal emotional growth.
+### 📓 Private Journal (Express)
+- **Reflective Prompts:** Guided chips for Gratitude, Energy Checks, and What I Need.
+- **Encrypted & Confidential:** Stored securely for your eyes only with DPDP Act 2023 compliance.
 
-### 🌿 Guided Relaxation & Meditation
-- **5-Minute Calm:** Quick breathing and centering sessions for high-stress moments.
-- **Sleep Better:** Calming exercises to help unwind before bedtime.
-- **Anxiety Relief:** Grounding techniques to regain calm during stressful periods.
+### 🤖 Talk to Mitra — AI Companion (Express)
+- **Always Available:** 24/7 empathetic conversational companion culturally tuned to Indian family dynamics.
+- **Crisis Detection System:** Real-time safety filters linking directly to national **Tele-MANAS (14416)** and **Emergency 112**.
 
-### 👩‍⚕️ Verified Counsellor Directory
-- **Expert Profiles:** Browse certified mental health professionals.
-- **Session Booking:** Schedule 1:1 audio, video, or chat consultations.
-- **Upcoming Schedule:** Keep track of booked appointments directly in your dashboard.
+### 🌿 Guided Box Breathing & Care (Restore)
+- **Interactive 4-4-4-4 Rhythm:** Smooth expanding/contracting halo visualizer (Inhale 4s, Hold 4s, Exhale 4s, Rest 4s).
+- **Session Celebration:** Confetti celebration upon finishing centering sessions.
+- **Immediate SOS Banner:** Prominent Tele-MANAS hotline banner with 1-click calling.
 
-### 👥 Supportive Community
-- **Encouraging Feed:** Read and share supportive, empathetic messages in a safe space.
-- **Uplifting Interaction:** Engage with peers on similar self-care journeys.
+### 👩‍⚕️ Verified Counsellor Directory (Connect)
+- **Expert Directory:** Profiles of verified clinical psychologists and family therapists with language proficiencies (Hindi, English, Tamil, Marathi, Bengali, etc.).
+- **Confidential Booking:** Select date, time slot, and session format (Video, Audio, Chat).
 
-### 🌐 Multilingual Support
-- Built-in localization support (`js/lang.js`) allowing users to interact with the platform in their preferred language.
+### 👥 Supportive Community Circles
+- **Safe Spaces:** Filter by groups (Students & Exams, Working Adults & Burnout, Caregivers & Elders).
+- **Uplifting Interaction:** Anonymous posts and supportive reaction counters.
 
-### 📱 Progressive Web App (PWA) Ready
-- **Installable:** Install Sahara as a native-like app on Android, iOS, Windows, and macOS.
-- **Offline Reliability:** Service Worker caching (`sw.js`) ensures smooth loading even under unstable network conditions.
-- **Responsive Mobile-First UI:** Tailored for seamless mobile, tablet, and desktop experiences.
+### 🔒 Privacy Sanctuary & Data Ownership (Me)
+- **DPDP Act 2023 Compliant:** Strict zero-advertising, zero data-selling policy.
+- **Instant Data Erasure:** 1-click permanent deletion of all local and cloud logs.
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Frontend:** Semantic HTML5, Vanilla CSS3 (Custom Design System, Flexbox, CSS Grid), Vanilla JavaScript (ES Modules).
-- **Backend & Cloud Services:** [Google Firebase](https://firebase.google.com/)
-  - **Firebase Authentication:** Secure user signup and sign-in (Email, Google, Phone).
-  - **Cloud Firestore:** Real-time NoSQL database for profiles, mood logs, journals, and community posts.
-  - **Firebase Hosting:** Global CDN deployment and SSL routing.
-- **PWA Capabilities:** Web App Manifest (`manifest.json`) and Service Worker (`js/sw.js`).
+- **Frontend:** React 19, Vite 8, Lucide React, Canvas Confetti
+- **Design System:** Custom glassmorphic CSS, Fraunces serif + Inter sans typography, warm sunset palette
+- **Backend & Cloud:** Google Firebase (Authentication & Cloud Firestore)
+- **PWA Capabilities:** Web App Manifest (`public/manifest.json`), responsive viewport styling
 
 ---
 
@@ -63,118 +64,79 @@ Whether you want to track your daily emotional state, write down your thoughts, 
 
 ```text
 Sahara/
-├── css/
-│   └── style.css            # Responsive layout, animations, and theme styles
-├── js/
-│   ├── app.js               # Application logic, state management, and navigation
-│   ├── firebase.js          # Firebase SDK initialization and services
-│   ├── lang.js              # Internationalization and language dictionaries
-│   └── sw.js                # Service Worker for offline caching & PWA support
+├── dist/                    # Compiled production build
 ├── public/
-│   └── index.html           # Public hosting assets
-├── 404.html                 # Custom fallback 404 page
-├── index.html               # Main Single-Page Application (SPA) entry point
-├── manifest.json            # Web App Manifest for PWA installation
-├── firebase.json            # Firebase Hosting & Firestore configuration
-├── firestore.rules          # Cloud Firestore security rules
-├── firestore.indexes.json   # Firestore database index definitions
-├── .firebaserc              # Firebase project alias mapping
-├── .gitignore               # Ignored files for version control
+│   ├── sahara-logo.jpg      # Official Sahara project logo
+│   └── manifest.json        # PWA Web App Manifest
+├── src/
+│   ├── assets/
+│   │   └── sahara-logo.jpg  # Logo asset
+│   ├── components/
+│   │   ├── AuthModal.jsx     # Login, Sign up & Guest access modal
+│   │   ├── BottomNav.jsx     # Mobile fixed navigation bar
+│   │   ├── Community.jsx     # Supportive peer circles feed
+│   │   ├── Dashboard.jsx     # Core dashboard with SVG mood chart
+│   │   ├── Journal.jsx       # Private guided journal
+│   │   ├── LandingPage.jsx   # Public landing page
+│   │   ├── MitraChat.jsx     # Empathetic AI companion chat
+│   │   ├── MoodTracker.jsx   # Mood check-in and dynamic insights
+│   │   ├── ProfilePrivacy.jsx# Profile, DPDP compliance, & erase data
+│   │   ├── RestoreCare.jsx   # Box breathing visualizer & counsellors
+│   │   ├── Sidebar.jsx       # Desktop sticky sidebar
+│   │   └── SplashScreen.jsx  # Logo animation splash transition
+│   ├── context/
+│   │   └── AuthContext.jsx   # Firebase Auth & Guest state provider
+│   ├── lib/
+│   │   └── firebase.js       # Firebase initialization from .env
+│   ├── styles/
+│   │   └── index.css         # Sahara glassmorphic design system
+│   ├── App.jsx               # Master user journey coordinator
+│   └── main.jsx              # React entry point
+├── .env                     # Firebase API keys & config
+├── .env.example             # Template for environment variables
+├── firebase.json            # Firebase Hosting configuration (dist/)
+├── package.json             # NPM dependencies & scripts
+├── vite.config.js           # Vite build & dev configuration
 └── README.md                # Project documentation
 ```
 
 ---
 
-## 🚀 Getting Started
+## 🔑 Environment Variables (`.env`)
 
-### Prerequisites
+Add your Firebase configuration to `.env` in the root directory:
 
-- A modern web browser (Chrome, Edge, Firefox, Safari).
-- (Optional) [Node.js](https://nodejs.org/) installed if using local dev servers like `serve` or `live-server`.
-- (Optional) [Firebase CLI](https://firebase.google.com/docs/cli) for managing Firebase services and deployments.
+```env
+VITE_FIREBASE_API_KEY=your_firebase_api_key_here
+VITE_FIREBASE_AUTH_DOMAIN=your_project_id.firebaseapp.com
+VITE_FIREBASE_PROJECT_ID=your_project_id
+VITE_FIREBASE_STORAGE_BUCKET=your_project_id.firebasestorage.app
+VITE_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
+VITE_FIREBASE_APP_ID=your_firebase_app_id
+```
 
-### 1. Clone the Repository
+---
 
+## 🚀 Running the Project
+
+### 1. Install Dependencies
 ```bash
-git clone https://github.com/Mrbunny159/Sahara.git
-cd Sahara
+npm install
 ```
 
-### 2. Configure Firebase
-
-For security, do not commit real credentials or private keys to a public repository.
-
-1. Create a project at [Firebase Console](https://console.firebase.google.com/).
-2. Enable **Authentication** (Email/Password, Google, etc.) and create a **Cloud Firestore** database.
-3. Replace the configuration in `js/firebase.js` with your own Firebase project credentials:
-
-```javascript
-const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.firebasestorage.app",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID"
-};
-```
-
-### 3. Run Locally
-
-Because the project uses standard ES Modules (`type="module"`), serve the directory through a local HTTP server:
-
-**Using VS Code:**
-- Install the **Live Server** extension, right-click `index.html`, and select **"Open with Live Server"**.
-
-**Using Node / npx:**
+### 2. Start Local Development Server
 ```bash
-npx serve .
+npm run dev
 ```
+Open `http://localhost:3000` in your browser.
 
-**Using Python:**
+### 3. Build for Production
 ```bash
-python -m http.server 8000
+npm run build
 ```
+Production assets are generated in the `dist/` directory.
 
-Open `http://localhost:8000` (or the provided port) in your browser.
-
----
-
-## ☁️ Deployment
-
-Deploy easily to **Firebase Hosting**:
-
-1. Install the Firebase CLI:
-   ```bash
-   npm install -g firebase-tools
-   ```
-2. Log in and initialize:
-   ```bash
-   firebase login
-   firebase use --add
-   ```
-3. Deploy Firestore rules, indexes, and hosting:
-   ```bash
-   firebase deploy
-   ```
-
----
-
-## 🔒 Security & Privacy
-
-- **Public Repository Safety:** Sensitive logs, cache directories, and secret credentials are intentionally omitted from version control via `.gitignore`.
-- **Database Rules:** Ensure your `firestore.rules` are configured to restrict read/write access exclusively to authenticated owners of their data.
-
----
-
-## ⚠️ Mental Health Disclaimer
-
-> **Important Note:**  
-> Sahara is designed as a personal self-care, reflection, and wellness companion. It is **not** a licensed healthcare provider, diagnostic service, or crisis intervention platform.  
-> If you or someone you know is undergoing an acute mental health emergency or crisis, please seek immediate help from qualified medical professionals or contact your local emergency mental health helpline.
-
----
-
-## 📄 License
-
-This project is licensed under the [MIT License](LICENSE) (or applicable open-source license of your choice).
+### 4. Deploy to Firebase Hosting
+```bash
+firebase deploy --only hosting
+```

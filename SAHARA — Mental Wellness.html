@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0A1628">
+<title>SAHARA · जब कोई नहीं, तब सहारा</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0A1628; --navy-2:#1B3A5C; --ink:#16233A; --muted:#667085; --line:#E8E2EE;
+  --amber:#F4A261; --coral:#E76F51; --teal:#2A9D8F; --sage:#8FB9A8; --violet:#8E7CC3; --pink:#D88BB0; --sky:#6FA8DC; --indigo:#3B5BA9; --rose:#C0584A;
+  --danger:#C2453D;
+  --serif:"Fraunces",Georgia,serif; --sans:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --sidebar:260px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans);color:var(--ink);min-height:100vh;line-height:1.55;-webkit-font-smoothing:antialiased;
+  background:radial-gradient(900px 600px at 95% -10%,rgba(231,111,81,.35),transparent 60%),
+             radial-gradient(800px 600px at -10% 30%,rgba(42,157,143,.28),transparent 60%),
+             radial-gradient(900px 700px at 60% 110%,rgba(142,124,195,.3),transparent 60%),
+             linear-gradient(160deg,#FFF8F1 0%,#F9ECF0 50%,#EEF6F4 100%) fixed}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer;border:0;background:none;text-align:left}
+.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.15}
+h1{font-size:34px}
+.muted{color:var(--muted)}
+.hi{font-family:var(--serif);font-style:italic;background:linear-gradient(90deg,#F4A261,#E76F51);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* Shell */
+.shell{display:grid;grid-template-columns:var(--sidebar) 1fr;min-height:100vh}
+.side{position:sticky;top:0;height:100vh;background:linear-gradient(180deg,#0A1628,#14294A);color:#C9D3E3;padding:26px 16px;display:flex;flex-direction:column;gap:22px;overflow-y:auto}
+.brand{display:flex;align-items:center;gap:12px;padding:0 8px}
+.mark{width:40px;height:40px;border-radius:14px;background:linear-gradient(140deg,var(--amber),var(--coral));display:grid;place-items:center;color:var(--navy);font-family:var(--serif);font-weight:600;font-size:21px;box-shadow:0 8px 20px -6px rgba(231,111,81,.6)}
+.brand b{font-family:var(--serif);font-size:20px;color:#fff;display:block;line-height:1}
+.brand small{font-size:11px;color:#8A9BB8}
+.nav-label{font-size:10.5px;text-transform:uppercase;letter-spacing:.14em;color:#5F7396;padding:0 12px 8px}
+.nav-btn{display:flex;align-items:center;gap:12px;width:100%;padding:10px 12px;border-radius:12px;font-size:14.5px;font-weight:500;color:#AEBBD0;transition:.2s}
+.nav-btn:hover{background:rgba(255,255,255,.07);color:#fff}
+.nav-btn.on{background:linear-gradient(90deg,rgba(231,111,81,.28),rgba(142,124,195,.08));color:#fff;box-shadow:inset 3px 0 0 var(--amber)}
+.nav-btn.on .i{color:var(--amber)}
+.side-foot{margin-top:auto;background:linear-gradient(135deg,rgba(42,157,143,.25),rgba(142,124,195,.25));border-radius:16px;padding:16px;font-size:12.5px;color:#D5DEEB}
+.side-foot b{color:#fff;display:block;margin-bottom:4px;font-size:13px}
+.main{padding:36px 44px 70px;min-width:0;max-width:1160px;width:100%}
+.topbar{margin-bottom:26px}
+.topbar .sub{color:var(--muted);margin-top:6px;font-size:14.5px}
+.mobile-brand{display:none;align-items:center;gap:10px;margin-bottom:18px}
+.mobile-brand b{font-family:var(--serif);font-size:19px}
+.bottom-nav{display:none}
+
+/* Components */
+.card{background:rgba(255,255,255,.72);backdrop-filter:blur(14px) saturate(160%);-webkit-backdrop-filter:blur(14px) saturate(160%);border:1px solid rgba(255,255,255,.7);border-radius:24px;padding:24px;box-shadow:0 18px 40px -18px rgba(22,35,58,.22)}
+.card h3{font-family:var(--sans);font-size:15px;font-weight:600;margin-bottom:14px}
+.grid{display:grid;gap:20px}
+.g-2{grid-template-columns:1fr 1fr}.g-main{grid-template-columns:1.6fr 1fr}
+.row{display:flex;align-items:center;gap:12px}
+.spread{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.stack{display:flex;flex-direction:column;gap:20px}
+.eyebrow{font-size:11.5px;text-transform:uppercase;letter-spacing:.12em;font-weight:700;margin-bottom:8px;color:var(--teal)}
+
+.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#0A1628 0%,#1B3A5C 40%,#2A7F7A 75%,#E76F51 130%);color:#fff;border-radius:32px;padding:36px;box-shadow:0 30px 60px -20px rgba(10,22,40,.5);margin-bottom:28px}
+.hero::after{content:"";position:absolute;right:-70px;top:-70px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(244,162,97,.6),transparent 70%)}
+.hero>*{position:relative;z-index:1}
+.hero h1{color:#fff;font-size:36px;max-width:520px}
+.hero p{color:#D6E2EE;margin-top:8px;font-size:15px}
+.hero .eyebrow{color:#FFD9B8}
+.moods{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
+.mpill{display:flex;flex-direction:column;align-items:center;gap:2px;padding:12px 14px;border-radius:18px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);min-width:76px;color:#fff;font-size:12.5px;transition:.2s}
+.mpill:hover{background:rgba(255,255,255,.25);transform:translateY(-3px)}
+.mpill .e{font-size:26px}
+
+/* Category system */
+.cat{position:relative;overflow:hidden;border-radius:26px;padding:24px;color:#fff;box-shadow:0 22px 40px -22px rgba(22,35,58,.5);min-height:250px;display:flex;flex-direction:column;gap:14px;transition:transform .25s}
+.cat:hover{transform:translateY(-4px)}
+.cat::before{content:"";position:absolute;right:-40px;bottom:-40px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,.18)}
+.cat>*{position:relative}
+.cat .cat-ico{width:50px;height:50px;border-radius:16px;background:rgba(255,255,255,.22);display:grid;place-items:center;backdrop-filter:blur(4px)}
+.cat .cat-ico .i{width:24px;height:24px}
+.cat h2{font-size:24px;color:#fff}
+.cat p{font-size:13.5px;opacity:.92}
+.cat ul{list-style:none;display:flex;flex-direction:column;gap:6px;margin-top:auto}
+.cat li button{width:100%;display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:14px;background:rgba(255,255,255,.18);color:#fff;font-size:14px;font-weight:500;transition:.2s}
+.cat li button:hover{background:rgba(255,255,255,.32);transform:translateX(3px)}
+.c-feel{background:linear-gradient(135deg,#F4A261,#E76F51)}
+.c-express{background:linear-gradient(135deg,#8E7CC3,#D88BB0)}
+.c-restore{background:linear-gradient(135deg,#2A9D8F,#8FB9A8)}
+.c-connect{background:linear-gradient(135deg,#3B5BA9,#6FA8DC)}
+.c-safety{background:linear-gradient(135deg,#C0584A,#E9896F)}
+.tag{display:inline-block;font-size:11px;padding:3px 9px;border-radius:999px;background:rgba(255,255,255,.22);margin-bottom:6px}
+.section-title{display:flex;align-items:baseline;justify-content:space-between;margin:34px 0 14px}
+.section-title p{color:var(--muted);font-size:13.5px}
+.gen-row{display:flex;gap:10px;flex-wrap:wrap}
+.gen{padding:10px 16px;border-radius:999px;background:#fff;font-size:13px;font-weight:600;box-shadow:0 6px 16px -10px rgba(22,35,58,.3)}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;border-radius:14px;font-weight:600;font-size:14.5px;transition:.2s;white-space:nowrap}
+.btn-primary{background:linear-gradient(135deg,#F4A261,#E76F51);color:#fff;box-shadow:0 10px 22px -10px rgba(231,111,81,.9)}
+.btn-primary:hover{transform:translateY(-1px)}
+.btn-navy{background:var(--navy);color:#fff}
+.btn-ghost{background:#fff;border:1px solid var(--line)}
+.btn-danger{background:#FDECEA;color:var(--danger)}
+.btn-block{width:100%}
+.btn-sm{padding:8px 14px;font-size:13px;border-radius:11px}
+.btn:disabled{opacity:.5}
+
+/* Mood + forms */
+.mgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:18px}
+.mcard{display:flex;flex-direction:column;align-items:center;gap:6px;padding:18px 6px;border-radius:18px;border:1.5px solid var(--line);background:#fff;font-size:13px;color:var(--muted);transition:.2s;text-align:center}
+.mcard .e{font-size:32px}
+.mcard:hover{transform:translateY(-2px)}
+.mcard.sel{border-color:#E76F51;background:linear-gradient(135deg,#FFF0E6,#FBE3EE);color:var(--ink);font-weight:600;box-shadow:0 12px 24px -14px rgba(231,111,81,.8)}
+.label{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
+.input,.textarea,.select{width:100%;padding:13px 15px;border:1.5px solid var(--line);border-radius:14px;background:#fff;outline:none;transition:.2s}
+.input:focus,.textarea:focus,.select:focus{border-color:#F4A261;box-shadow:0 0 0 4px rgba(244,162,97,.18)}
+.textarea{min-height:120px;resize:vertical;line-height:1.6}
+.field{margin-bottom:16px}
+.entry{padding:18px 20px;border-radius:18px;background:#fff;border-left:4px solid #8E7CC3;margin-bottom:12px;box-shadow:0 8px 20px -14px rgba(22,35,58,.3)}
+.entry .meta{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:8px}
+.entry p{white-space:pre-wrap;font-size:14.5px;line-height:1.65;word-break:break-word}
+.del{color:#A59C92;font-size:12px;padding:4px 8px;border-radius:8px}
+.del:hover{color:var(--danger);background:#FDECEA}
+.prompts{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.prompt{font-size:12.5px;padding:7px 12px;border-radius:999px;background:linear-gradient(90deg,#EFE8FA,#FBE6F0);color:#5B4A8B;cursor:pointer}
+
+/* Chat */
+.chat{display:flex;flex-direction:column;height:calc(100vh - 220px);min-height:440px;background:rgba(255,255,255,.8);border-radius:26px;box-shadow:0 18px 40px -18px rgba(22,35,58,.25);overflow:hidden}
+.chat-head{display:flex;align-items:center;gap:14px;padding:16px 20px;border-bottom:1px solid var(--line)}
+.av{width:44px;height:44px;border-radius:50%;background:linear-gradient(140deg,#2A9D8F,#8E7CC3);color:#fff;display:grid;place-items:center;font-family:var(--serif);font-size:18px}
+.chat-body{flex:1;overflow-y:auto;padding:22px;display:flex;flex-direction:column;gap:12px}
+.bubble{max-width:72%;padding:12px 16px;border-radius:18px;font-size:14.5px;line-height:1.55;white-space:pre-wrap}
+.bubble.mitra{background:#fff;border:1px solid var(--line);align-self:flex-start;border-bottom-left-radius:6px}
+.bubble.me{background:linear-gradient(135deg,#8E7CC3,#D88BB0);color:#fff;align-self:flex-end;border-bottom-right-radius:6px}
+.bubble.alert{background:#FDECEA;color:#7A2A24;border-color:#F3C7C1}
+.chat-foot{padding:14px 16px;border-top:1px solid var(--line)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.chip{font-size:12.5px;padding:7px 13px;border-radius:999px;border:1px solid var(--line);background:#fff}
+.chip:hover{border-color:#8E7CC3}
+.cform{display:flex;gap:10px}
+.cform .input{border-radius:999px}
+.foot{font-size:12px;color:var(--muted);margin-top:10px;text-align:center}
+
+/* Care */
+.sos{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 22px;border-radius:20px;background:linear-gradient(135deg,#FFF1EE,#FDE2DC);border:1px solid #F5C6BE;margin-bottom:24px}
+.sos b{color:#8A2B24}
+.sos span{font-size:13px;color:#A0463D}
+.seg{display:inline-flex;background:rgba(255,255,255,.7);padding:5px;border-radius:14px;margin-bottom:24px}
+.seg button{padding:9px 18px;border-radius:10px;font-size:14px;font-weight:600;color:var(--muted)}
+.seg button.on{background:linear-gradient(135deg,#2A9D8F,#8FB9A8);color:#fff}
+.breath{position:relative;height:320px;display:grid;place-items:center}
+.halo{position:absolute;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(42,157,143,.3),transparent 70%);transition:transform 4s ease-in-out}
+.ring{width:210px;height:210px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#D9F2EC,#2A9D8F 70%,#1E7A70);box-shadow:0 20px 50px -12px rgba(42,157,143,.6);display:grid;place-items:center;transition:transform 4s ease-in-out;color:#fff;font-family:var(--serif);font-size:22px;font-weight:600}
+.cdrow{display:flex;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
+.cdrow:last-child{border:0}
+.c-ico{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;color:#fff;font-weight:600;font-family:var(--serif);font-size:18px;background:linear-gradient(135deg,#2A9D8F,#6FA8DC)}
+.pill{font-size:11.5px;padding:4px 10px;border-radius:999px;background:#EEF4FB;color:#3B5B86;font-weight:600}
+.empty{text-align:center;padding:30px 16px;color:var(--muted);font-size:14px}
+.privacy{background:linear-gradient(135deg,rgba(230,241,236,.95),rgba(236,232,250,.95));border:1px solid #D9E6EE;display:flex;gap:14px}
+.privacy p{font-size:14px;color:#3F5E53}
+.stat{font-family:var(--serif);font-size:32px;font-weight:600;line-height:1}
+.stat-l{font-size:12.5px;color:var(--muted);margin-top:6px}
+
+/* Onboarding */
+.onb{min-height:100vh;display:grid;grid-template-columns:1.1fr 1fr}
+.onb-art{background:linear-gradient(150deg,#0A1628 0%,#1B3A5C 55%,#2A7F7A 100%);color:#fff;padding:56px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.onb-art h1{color:#fff;font-size:46px}
+.onb-art p{color:#D6E2EE;max-width:420px;margin-top:14px;font-size:15.5px}
+.quote{font-family:var(--serif);font-size:26px;color:#FFD9B8}
+.onb-body{display:flex;align-items:center;justify-content:center;padding:48px}
+.onb-card{width:100%;max-width:420px}
+.cats-mini{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:26px}
+.cats-mini div{padding:12px 14px;border-radius:16px;color:#fff;font-size:13px;font-weight:600}
+
+.toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);background:var(--navy);color:#fff;padding:14px 20px;border-radius:14px;font-size:14px;box-shadow:0 20px 40px -10px rgba(0,0,0,.4);opacity:0;pointer-events:none;transition:.35s;z-index:90;max-width:90vw}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.modal-bg{position:fixed;inset:0;background:rgba(10,22,40,.45);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;z-index:80;padding:20px}
+.modal-bg.show{display:flex}
+.modal{background:#fff;border-radius:24px;padding:28px;max-width:440px;width:100%}
+.hidden{display:none!important}
+.screen{display:none}
+.screen.active{display:block;animation:fade .4s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+@media (max-width:1000px){
+  .cats{grid-template-columns:1fr 1fr!important}
+}
+@media (max-width:900px){
+  .shell{grid-template-columns:1fr}
+  .side{display:none}
+  .main{padding:20px 18px 110px}
+  .mobile-brand{display:flex}
+  .g-main,.g-2{grid-template-columns:1fr}
+  .cats{grid-template-columns:1fr!important}
+  .onb{grid-template-columns:1fr}.onb-art{display:none}
+  .onb-body{padding:28px 22px}
+  .hero h1{font-size:28px}
+  .bubble{max-width:86%}
+  .chat{height:calc(100vh - 230px)}
+  .bottom-nav{display:flex;position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:8px 6px calc(8px + env(safe-area-inset-bottom,0));justify-content:space-around;z-index:50}
+  .bottom-nav button{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px;color:var(--muted);padding:6px 8px;min-width:56px}
+  .bottom-nav button.on{color:var(--navy);font-weight:600}
+  .sos{flex-direction:column;align-items:flex-start}
+  .mgrid{grid-template-columns:repeat(5,1fr);gap:6px}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute"><defs>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></symbol>
+  <symbol id="i-mood" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2zM4 21V5"/></symbol>
+  <symbol id="i-wind" viewBox="0 0 24 24"><path d="M3 8h11a3 3 0 1 0-3-3M3 16h15a3 3 0 1 1-3 3M3 12h8"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2 20a7 7 0 0 1 14 0M16 4.5a3.5 3.5 0 0 1 0 7M22 20a7 7 0 0 0-4-6.3"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 5 5L20 7"/></symbol>
+  <symbol id="i-sos" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></symbol>
+</defs></svg>
+
+<!-- Onboarding -->
+<div id="onboarding" class="hidden">
+  <div class="onb">
+    <aside class="onb-art">
+      <div class="brand"><div class="mark">स</div><div><b style="font-family:var(--serif);font-size:20px;color:#fff">SAHARA</b><small style="display:block;color:#A9C0D6">The AI Assistant</small></div></div>
+      <div>
+        <h1>A calmer mind,<br><span class="hi" style="background:linear-gradient(90deg,#FFD9B8,#F4A261);-webkit-background-clip:text;background-clip:text;color:transparent">one day at a time.</span></h1>
+        <p>Check in with yourself, write things down, breathe, and talk to a companion who listens without judgement.</p>
+        <div class="cats-mini">
+          <div class="c-feel">Feel</div><div class="c-express">Express</div>
+          <div class="c-restore">Restore</div><div class="c-connect">Connect</div>
+        </div>
+      </div>
+      <div class="quote">"जब कोई नहीं, तब सहारा"</div>
+    </aside>
+    <div class="onb-body"><div class="onb-card" id="onbCard"></div></div>
+  </div>
+</div>
+
+<!-- App -->
+<div id="app" class="shell hidden">
+  <aside class="side">
+    <div class="brand"><div class="mark">स</div><div><b>SAHARA</b><small>Mental wellness</small></div></div>
+    <div>
+      <div class="nav-label">Home</div>
+      <button class="nav-btn" data-s="home" onclick="go('home')"><svg class="i"><use href="#i-home"/></svg>Dashboard</button>
+    </div>
+    <div>
+      <div class="nav-label">Feel</div>
+      <button class="nav-btn" data-s="mood" onclick="go('mood')"><svg class="i"><use href="#i-mood"/></svg>Mood check-in</button>
+    </div>
+    <div>
+      <div class="nav-label">Express</div>
+      <button class="nav-btn" data-s="journal" onclick="go('journal')"><svg class="i"><use href="#i-book"/></svg>Journal</button>
+      <button class="nav-btn" data-s="mitra" onclick="go('mitra')"><svg class="i"><use href="#i-chat"/></svg>Talk to Mitra</button>
+    </div>
+    <div>
+      <div class="nav-label">Restore & Connect</div>
+      <button class="nav-btn" data-s="care" onclick="go('care')"><svg class="i"><use href="#i-wind"/></svg>Breathe</button>
+      <button class="nav-btn" data-s="care" onclick="go('care','counsellors')"><svg class="i"><use href="#i-users"/></svg>Counsellors</button>
+    </div>
+    <div>
+      <div class="nav-label">Account</div>
+      <button class="nav-btn" data-s="profile" onclick="go('profile')"><svg class="i"><use href="#i-user"/></svg>Profile & privacy</button>
+    </div>
+    <div class="side-foot"><b>🔒 Private by design</b>Your check-ins and journal stay on this device.</div>
+  </aside>
+
+  <main class="main">
+    <div class="mobile-brand"><div class="mark">स</div><b>SAHARA</b></div>
+
+    <!-- DASHBOARD -->
+    <section id="home" class="screen">
+      <div class="hero">
+        <div class="eyebrow" id="dateLabel"></div>
+        <h1 id="greet">Good day</h1>
+        <p id="greetSub">How are you feeling today?</p>
+        <div class="moods" id="homeMoods"></div>
+      </div>
+
+      <div class="section-title"><h2>Explore by category</h2><p>Pick what you need right now</p></div>
+      <div class="grid cats" style="grid-template-columns:repeat(4,1fr);gap:18px">
+        <div class="cat c-feel">
+          <div class="cat-ico"><svg class="i"><use href="#i-mood"/></svg></div>
+          <span class="tag">For clarity</span>
+          <h2>Feel</h2>
+          <p>Notice how you are doing, day by day.</p>
+          <ul>
+            <li><button onclick="go('mood')">Mood check-in <svg class="i" style="width:16px;height:16px"><use href="#i-arrow"/></svg></button></li>
+            <li><button onclick="go('home')">Mood trend & streak <svg class="i" style="width:16px;height:16px"><use href="#i-arrow"/></svg></button></li>
+          </ul>
+        </div>
+        <div class="cat c-express">
+          <div class="cat-ico"><svg class="i"><use href="#i-book"/></svg></div>
+          <span class="tag">For expression</span>
+          <h2>Express</h2>
+          <p>Put thoughts into words, and talk them through.</p>
+          <ul>
+            <li><button onclick="go('journal')">Private journal <svg class="i" style="width:16px;height:16px"><use href="#i-arrow"/></svg></button></li>
+            <li><button onclick="go('mitra')">Talk to Mitra <svg class="i" style="width:16px;height:16px"><use href="#i-arrow"/></svg></button></li>
+          </ul>
+        </div>
+        <div class="cat c-restore">
+          <div class="cat-ico"><svg class="i"><use href="#i-wind"/></svg></div>
+          <span class="tag">For calm</span>
+          <h2>Restore</h2>
+          <p>Slow down the body, and reset the mind.</p>
+          <ul>
+            <li><button onclick="go('care')">Guided breathing <svg class="i" style="width:16px;height:16px"><use href="#i-arrow"/></svg></button></li>
+          </ul>
+        </div>
+        <div class="cat c-connect">
+          <div class="cat-ico"><svg class="i"><use href="#i-users"/></svg></div>
+          <span class="tag">For support</span>
+          <h2>Connect</h2>
+          <p>Book time with a verified counsellor.</p>
+          <ul>
+            <li><button onclick="go('care','counsellors')">Find a counsellor <svg class="i" style="width:16px;height:16px"><use href="#i-arrow"/></svg></button></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-title"><h2>Built for every generation</h2><p>One space, for everyone in the family</p></div>
+      <div class="gen-row">
+        <span class="gen">🎓 Students</span><span class="gen">💼 Working adults</span><span class="gen">🏡 Caregivers</span><span class="gen">🌿 Parents</span><span class="gen">🧓 Seniors</span>
+      </div>
+
+      <div class="grid g-main" style="margin-top:30px">
+        <div class="card"><h3>Your last 14 days</h3><svg id="homeChart" viewBox="0 0 600 190" style="width:100%;height:190px"></svg></div>
+        <div class="stack">
+          <div class="card" style="display:grid;grid-template-columns:1fr 1fr 1fr;text-align:center;gap:8px">
+            <div><div class="stat" id="sMoods">0</div><div class="stat-l">Check-ins</div></div>
+            <div><div class="stat" id="sEntries">0</div><div class="stat-l">Entries</div></div>
+            <div><div class="stat" id="sStreak">0</div><div class="stat-l">Day streak</div></div>
+          </div>
+          <div class="card" style="background:linear-gradient(135deg,rgba(216,139,176,.25),rgba(111,168,220,.25))">
+            <div class="eyebrow" style="color:#5B4A8B">Today's reminder</div>
+            <p id="tip" style="font-family:var(--serif);font-size:19px;line-height:1.4"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MOOD -->
+    <section id="mood" class="screen">
+      <div class="topbar"><h1>Mood check-in</h1><div class="sub">Naming how you feel is the first step. There is no wrong answer.</div></div>
+      <div class="grid g-main">
+        <div class="card">
+          <h3>How are you feeling right now?</h3>
+          <div class="mgrid" id="moodPicker"></div>
+          <div class="field"><label class="label" for="moodNote">What's contributing to it? <span class="muted" style="font-weight:400">(optional)</span></label>
+            <textarea class="textarea" id="moodNote" placeholder="A tough meeting, a late night, a good conversation..."></textarea></div>
+          <button class="btn btn-primary btn-block" onclick="saveMood()"><svg class="i" style="width:18px;height:18px"><use href="#i-check"/></svg>Save check-in</button>
+        </div>
+        <div class="stack">
+          <div class="card"><h3>Insight</h3><p class="muted" id="moodInsight" style="font-size:14.5px"></p></div>
+          <div class="card"><h3>Recent check-ins</h3><div id="moodHistory"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- JOURNAL -->
+    <section id="journal" class="screen">
+      <div class="topbar"><h1>Journal</h1><div class="sub">Writing helps untangle thoughts. Only you can read these.</div></div>
+      <div class="grid g-2" style="align-items:start">
+        <div class="card">
+          <div class="prompts">
+            <span class="prompt" onclick="prompt('Today I am grateful for…')">Gratitude</span>
+            <span class="prompt" onclick="prompt('What drained my energy today was…')">Energy check</span>
+            <span class="prompt" onclick="prompt('What I need right now is…')">What I need</span>
+          </div>
+          <div class="field"><textarea class="textarea" id="journalText" placeholder="Start with whatever is on your mind…" style="min-height:260px"></textarea></div>
+          <button class="btn btn-primary btn-block" onclick="saveEntry()"><svg class="i" style="width:18px;height:18px"><use href="#i-plus"/></svg>Save entry</button>
+        </div>
+        <div id="entries"></div>
+      </div>
+    </section>
+
+    <!-- MITRA -->
+    <section id="mitra" class="screen">
+      <div class="topbar"><h1>Talk to Mitra</h1><div class="sub">A supportive companion. Not a replacement for a therapist.</div></div>
+      <div class="chat">
+        <div class="chat-head"><div class="av">म</div><div><b>Mitra</b><div class="muted" style="font-size:13px">आपका साथी · Your friend</div></div></div>
+        <div class="chat-body" id="chatBody"></div>
+        <div class="chat-foot">
+          <div class="chips">
+            <button class="chip" onclick="quick('I feel anxious and my chest feels tight')">Feeling anxious</button>
+            <button class="chip" onclick="quick('I feel low and lonely')">Low & lonely</button>
+            <button class="chip" onclick="quick('I cannot sleep at night')">Can't sleep</button>
+            <button class="chip" onclick="quick('Exam and work pressure is too much')">Pressure</button>
+          </div>
+          <form class="cform" onsubmit="sendChat(event)">
+            <input class="input" id="chatIn" placeholder="Share what's on your mind…" autocomplete="off">
+            <button class="btn btn-navy" type="submit"><svg class="i" style="width:18px;height:18px"><use href="#i-send"/></svg></button>
+          </form>
+        </div>
+      </div>
+      <div class="foot">In danger right now? Call 112, or Tele-MANAS on 14416.</div>
+    </section>
+
+    <!-- CARE -->
+    <section id="care" class="screen">
+      <div class="sos">
+        <div class="row"><svg class="i" style="color:#C0584A"><use href="#i-sos"/></svg><div><b>Need support right now?</b><br><span>Tele-MANAS 14416 (free, 24/7) · Emergency 112</span></div></div>
+        <a href="tel:14416" class="btn btn-danger btn-sm" style="text-decoration:none">Call 14416</a>
+      </div>
+      <div class="topbar"><h1>Restore & Connect</h1><div class="sub">A guided breathing exercise, or time with a verified counsellor.</div></div>
+      <div class="seg">
+        <button id="tabB" class="on" onclick="careTab('breathe')">Breathing</button>
+        <button id="tabC" onclick="careTab('counsellors')">Counsellors</button>
+      </div>
+
+      <div id="breathePanel" class="grid g-main">
+        <div class="card" style="padding:32px;text-align:center">
+          <div class="breath"><div class="halo" id="halo"></div><div class="ring" id="ring">Ready</div></div>
+          <div style="font-family:var(--serif);font-size:20px;margin-top:6px" id="bText">Breathe in as the circle grows</div>
+          <div class="muted" style="font-size:13.5px;margin:6px 0 20px" id="bSub">Box breathing · 4 seconds in, hold, out, hold</div>
+          <div style="max-width:260px;margin:0 auto"><button class="btn btn-primary btn-block" id="bBtn" onclick="toggleBreath()">Begin session</button></div>
+        </div>
+        <div class="stack">
+          <div class="card"><h3>Why it helps</h3><p class="muted" style="font-size:14.5px">Slow, even breathing tells your nervous system you are safe. A few minutes can ease tension before a hard conversation, an exam, or sleep.</p></div>
+          <div class="card"><h3>Completed sessions</h3><div class="stat" id="bCount">0</div><div class="stat-l">Breathing sessions</div></div>
+        </div>
+      </div>
+
+      <div id="counsellorPanel" class="hidden">
+        <div class="card privacy" style="margin-bottom:22px">
+          <svg class="i" style="color:#2F6F5E;margin-top:2px"><use href="#i-shield"/></svg>
+          <p><b style="color:#24443A">Confidential.</b> Your personal data is never shared with counsellors through SAHARA unless you choose to share it in a session.</p>
+        </div>
+        <div class="grid g-2" style="align-items:start">
+          <div class="card"><h3>Verified counsellors</h3><div class="empty"><svg class="i" style="width:36px;height:36px;margin-bottom:8px"><use href="#i-users"/></svg><br>Verified counsellors will appear here as they are onboarded.</div></div>
+          <div class="card"><h3>Your sessions</h3><div class="empty">No sessions yet.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROFILE -->
+    <section id="profile" class="screen">
+      <div class="topbar"><h1>Profile & privacy</h1><div class="sub">Manage your details and control your data.</div></div>
+      <div class="grid g-2" style="align-items:start">
+        <div class="card">
+          <div class="field"><label class="label" for="nameIn">Display name</label><input class="input" id="nameIn" placeholder="What should Mitra call you?"></div>
+          <button class="btn btn-navy" onclick="saveName()">Save changes</button>
+          <div class="card privacy" style="margin-top:22px;box-shadow:none">
+            <svg class="i" style="color:#2F6F5E;margin-top:2px"><use href="#i-lock"/></svg>
+            <div><b style="display:block;margin-bottom:4px;color:#24443A">Your privacy</b><p>Check-ins, journal entries and chats are stored only on this device.</p></div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Your data</h3>
+          <p class="muted" style="font-size:14px;margin-bottom:18px">You can erase everything SAHARA has stored on this device at any time.</p>
+          <button class="btn btn-danger btn-block" onclick="document.getElementById('modal').classList.add('show')"><svg class="i" style="width:18px;height:18px"><use href="#i-trash"/></svg>Erase all my data</button>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<nav class="bottom-nav hidden" id="bottomNav">
+  <button data-s="home" onclick="go('home')"><svg class="i"><use href="#i-home"/></svg>Home</button>
+  <button data-s="mood" onclick="go('mood')"><svg class="i"><use href="#i-mood"/></svg>Feel</button>
+  <button data-s="journal" onclick="go('journal')"><svg class="i"><use href="#i-book"/></svg>Express</button>
+  <button data-s="care" onclick="go('care')"><svg class="i"><use href="#i-wind"/></svg>Restore</button>
+  <button data-s="profile" onclick="go('profile')"><svg class="i"><use href="#i-user"/></svg>Me</button>
+</nav>
+
+<div class="modal-bg" id="modal">
+  <div class="modal">
+    <h2 style="margin-bottom:8px">Erase all your data?</h2>
+    <p class="muted" style="font-size:14.5px;margin-bottom:22px">This permanently deletes your check-ins, journal entries and chats from this device. It cannot be undone.</p>
+    <div class="row" style="justify-content:flex-end">
+      <button class="btn btn-ghost" onclick="document.getElementById('modal').classList.remove('show')">Cancel</button>
+      <button class="btn btn-danger" onclick="eraseAll()">Yes, erase everything</button>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ---------- Storage (this device only) ---------- */
+const KEY='sahara_v3';
+const EMPTY={name:'',onboarded:false,moods:[],entries:[],chat:[],breaths:0};
+let S={...EMPTY};
+try{const raw=localStorage.getItem(KEY); if(raw) S={...EMPTY,...JSON.parse(raw)};}catch(e){}
+function persist(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+
+/* ---------- Helpers ---------- */
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const iso=d=>{const x=new Date(d);return new Date(x.getTime()-x.getTimezoneOffset()*60000).toISOString().slice(0,10);};
+const today=()=>iso(new Date());
+const fmt=(s,o)=>new Date(s+'T00:00:00').toLocaleDateString('en-IN',o||{day:'numeric',month:'short'});
+function toast(m){$('toast').textContent=m;$('toast').classList.add('show');clearTimeout($('toast')._h);$('toast')._h=setTimeout(()=>$('toast').classList.remove('show'),2800);}
+
+const MOODS=[{e:'😔',l:'Low',v:1},{e:'😕',l:'Uneasy',v:2},{e:'😐',l:'Okay',v:3},{e:'🙂',l:'Good',v:4},{e:'😊',l:'Great',v:5}];
+const TIPS=['Take three slow breaths before you respond to something difficult.','Naming a feeling out loud often makes it feel smaller.','Step outside for two minutes. Daylight resets the mind quickly.','Finishing one small task is a real win.','Rest is part of getting better, not something you earn.','Speak to yourself the way you would speak to a close friend.'];
+
+/* ---------- Routing ---------- */
+function go(id,sub){
+  if(!S.onboarded){renderOnb();$('onboarding').classList.remove('hidden');$('app').classList.add('hidden');$('bottomNav').classList.add('hidden');return;}
+  $('onboarding').classList.add('hidden');
+  $('app').classList.remove('hidden'); $('bottomNav').classList.remove('hidden');
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  $(id).classList.add('active');
+  document.querySelectorAll('[data-s]').forEach(b=>b.classList.toggle('on',b.dataset.s===id));
+  if(id==='home') renderHome();
+  if(id==='mood') renderMood();
+  if(id==='journal') renderJournal();
+  if(id==='mitra') renderChat();
+  if(id==='care') careTab(sub||'breathe');
+  if(id==='profile') $('nameIn').value=S.name||'';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ---------- Onboarding ---------- */
+let step=0;
+const STEPS=[
+  {t:'Welcome to SAHARA',d:'A calm, private space made for busy minds. Let\'s set you up in a minute.',b:'Get started'},
+  {t:'Four ways to feel better',d:'Feel, Express, Restore, and Connect. Pick what fits you. Every generation has a place here.',b:'Continue'},
+  {t:'Meet Mitra',d:'Talk through what\'s on your mind any time. Mitra listens, reflects, and gently suggests what might help.',b:'Continue'},
+  {t:'What should we call you?',d:'Just your first name is perfect. You can change it later.',b:'Enter SAHARA',input:true}
+];
+function renderOnb(){
+  const s=STEPS[step];
+  $('onbCard').innerHTML=`
+    <div style="display:flex;gap:6px;margin-bottom:28px">${STEPS.map((_,i)=>`<i style="height:5px;flex:1;border-radius:4px;background:${i<=step?'linear-gradient(90deg,#F4A261,#E76F51)':'var(--line)'}"></i>`).join('')}</div>
+    <div class="eyebrow">Step ${step+1} of ${STEPS.length}</div>
+    <h1 style="margin-bottom:12px">${s.t}</h1>
+    <p class="muted" style="font-size:15.5px;line-height:1.65">${s.d}</p>
+    ${s.input?`<div class="field" style="margin-top:26px"><label class="label" for="onbName">First name</label><input class="input" id="onbName" placeholder="e.g. Aisha" value="${esc(S.name)}"></div>`:''}
+    <div class="row" style="margin-top:28px;justify-content:space-between">
+      ${step>0?'<button class="btn btn-ghost" onclick="step--;renderOnb()">Back</button>':'<span></span>'}
+      <button class="btn btn-primary" onclick="nextOnb()">${s.b}</button>
+    </div>
+    ${step===0?'<button class="muted" style="margin-top:18px;font-size:13px;text-decoration:underline" onclick="finishOnb()">Skip introduction</button>':''}`;
+}
+function nextOnb(){
+  if(step<STEPS.length-1){step++;renderOnb();return;}
+  S.name=(($('onbName')||{}).value||'').trim();finishOnb();
+}
+function finishOnb(){S.onboarded=true;persist();go('home');toast(S.name?`Welcome, ${S.name} 🌿`:'Welcome to SAHARA 🌿');}
+
+/* ---------- Dashboard ---------- */
+function streak(){const days=new Set(S.moods.map(m=>m.date));let n=0,d=new Date();while(days.has(iso(d))){n++;d.setDate(d.getDate()-1);}return n;}
+function renderHome(){
+  const h=new Date().getHours();
+  const part=h<12?'Good morning':h<17?'Good afternoon':'Good evening';
+  $('dateLabel').textContent=new Date().toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long'});
+  $('greet').innerHTML=S.name?`${part}, <span class="hi">${esc(S.name)}</span>`:part;
+  const checked=S.moods.some(m=>m.date===today());
+  $('greetSub').textContent=checked?'You have checked in today. That attention to yourself matters.':'How are you feeling today? Choose what fits best.';
+  $('homeMoods').innerHTML=MOODS.map((m,i)=>`<button class="mpill" onclick="quickMood(${i})"><span class="e">${m.e}</span>${m.l}</button>`).join('');
+  $('sMoods').textContent=S.moods.length;
+  $('sEntries').textContent=S.entries.length;
+  $('sStreak').textContent=streak();
+  $('tip').textContent=TIPS[new Date().getDate()%TIPS.length];
+  drawChart($('homeChart'));
+}
+function quickMood(i){selMood=i;saveMood();go('home');}
+
+function drawChart(svg){
+  const W=600,H=190,P=18;const days=[];
+  for(let i=13;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);days.push(iso(d));}
+  const pts=days.map((d,i)=>{const m=S.moods.filter(x=>x.date===d).pop();return{x:P+i*((W-2*P)/13),y:m?H-P-((m.v-1)/4)*(H-2*P):null};});
+  const real=pts.filter(p=>p.y!==null);
+  let s=`<defs><linearGradient id="g" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#E76F51" stop-opacity=".35"/><stop offset="1" stop-color="#8E7CC3" stop-opacity="0"/></linearGradient><linearGradient id="ln" x1="0" x2="1"><stop offset="0" stop-color="#F4A261"/><stop offset="1" stop-color="#8E7CC3"/></linearGradient></defs>`;
+  [1,3,5].forEach(v=>{const y=H-P-((v-1)/4)*(H-2*P);s+=`<line x1="${P}" x2="${W-P}" y1="${y}" y2="${y}" stroke="#E8E2EE" stroke-dasharray="4 6"/>`;});
+  if(real.length<2){s+=`<text x="${W/2}" y="${H/2}" text-anchor="middle" fill="#667085" font-size="14" font-family="Inter,sans-serif">Check in on a few days to see your trend</text>`;}
+  else{const line=real.map((p,i)=>`${i?'L':'M'}${p.x},${p.y}`).join(' ');
+    s+=`<path d="${line} L${real.at(-1).x},${H-P} L${real[0].x},${H-P} Z" fill="url(#g)"/><path d="${line}" fill="none" stroke="url(#ln)" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>`;}
+  real.forEach(p=>{s+=`<circle cx="${p.x}" cy="${p.y}" r="5" fill="#fff" stroke="#E76F51" stroke-width="2.5"/>`;});
+  svg.innerHTML=s;
+}
+
+/* ---------- Mood ---------- */
+let selMood=null;
+function renderMood(){
+  $('moodPicker').innerHTML=MOODS.map((m,i)=>`<button class="mcard ${selMood===i?'sel':''}" onclick="pickMood(${i})"><span class="e">${m.e}</span>${m.l}</button>`).join('');
+  const recent=S.moods.slice(-7);
+  const avg=recent.length?recent.reduce((a,b)=>a+b.v,0)/recent.length:null;
+  let msg='Check in for a few days and your personal trend will appear here.';
+  if(avg!==null){
+    if(avg>=4) msg='Your recent check-ins have been lifting. Notice what helped, and do more of it.';
+    else if(avg>=3) msg='You have been steady lately. Rest, movement, and time outside can add up.';
+    else msg='Things have felt heavy recently. Please be gentle with yourself. Talking to Mitra or a counsellor can help.';
+  }
+  $('moodInsight').textContent=msg;
+  const hist=S.moods.slice().reverse().slice(0,6);
+  $('moodHistory').innerHTML=hist.length?hist.map(m=>`
+    <div class="spread" style="padding:12px 0;border-bottom:1px solid var(--line)">
+      <div class="row"><span style="font-size:22px">${MOODS[m.v-1].e}</span><div><b style="font-size:14px">${m.label}</b><div class="muted" style="font-size:12.5px">${fmt(m.date,{weekday:'short',day:'numeric',month:'short'})}</div></div></div>
+      <span class="muted" style="font-size:12.5px;max-width:45%;text-align:right">${esc(m.note||'').slice(0,40)}</span>
+    </div>`).join(''):'<div class="empty">No check-ins yet.</div>';
+}
+let selMoodIdx=null;
+function pickMood(i){selMood=i;renderMood();}
+function saveMood(){
+  if(selMood===null){toast('Choose how you feel first');return;}
+  const m=MOODS[selMood];
+  S.moods.push({date:today(),v:m.v,label:m.l,note:($('moodNote')?$('moodNote').value.trim():'').slice(0,500)});
+  persist();selMood=null;if($('moodNote'))$('moodNote').value='';
+  toast('Check-in saved. Thank you for checking in 💛');
+  if(m.v<=2) setTimeout(()=>toast('Sorry today feels hard. Mitra is here whenever you want to talk.'),3000);
+}
+
+/* ---------- Journal ---------- */
+function prompt(t){const el=$('journalText');el.value=(el.value?el.value+'\n\n':'')+t+' ';el.focus();}
+function renderJournal(){
+  const list=S.entries.slice().reverse();
+  $('entries').innerHTML=list.length?list.map(e=>`
+    <div class="entry"><div class="meta"><span>${fmt(e.date,{weekday:'short',day:'numeric',month:'long'})}</span><button class="del" onclick="delEntry(${e.at})">Delete</button></div><p>${esc(e.text)}</p></div>`).join('')
+  :'<div class="card empty"><svg class="i" style="width:36px;height:36px"><use href="#i-book"/></svg><br>Your entries will appear here.</div>';
+}
+function saveEntry(){
+  const t=$('journalText').value.trim();
+  if(!t){toast('Write a few words first');return;}
+  S.entries.push({date:today(),text:t.slice(0,5000),at:Date.now()});
+  persist();$('journalText').value='';toast('Entry saved');renderJournal();
+}
+function delEntry(at){S.entries=S.entries.filter(e=>e.at!==at);persist();renderJournal();}
+
+/* ---------- Mitra ---------- */
+const CRISIS=/(suicid|kill myself|end my life|want to die|hurt myself|self[- ]?harm|don'?t want to live|no reason to live)/i;
+function mitraReply(text){
+  const t=text.toLowerCase();
+  if(CRISIS.test(t)) return {alert:true,text:"I'm really glad you told me, and I'm sorry you're carrying this much pain. Please reach out to Tele-MANAS on 14416 (or 1-800-891-4416) right now. If you are in immediate danger, call 112.\n\nAre you safe at this moment?"};
+  if(/anxious|anxiety|panic|worried|worry|nervous|chest/.test(t)) return {text:"That sounds exhausting. When worry takes over, the body often follows.\n\nLet's slow things down: breathe in for four counts, hold for four, then breathe out slowly for six. You can try the breathing exercise under Restore.\n\nWhen you're ready, tell me what the worry is about."};
+  if(/sad|low|lonely|alone|empty|cry|hopeless/.test(t)) return {text:"Thank you for trusting me with that. Feeling low or lonely is heavy, and you don't have to fix it right away.\n\nWhat has felt hardest today?"};
+  if(/sleep|insomnia|can'?t sleep|tired/.test(t)) return {text:"Sleep trouble makes everything feel harder. Try setting the phone aside 30 minutes before bed, and write tomorrow's worries on paper.\n\nWhat does your evening usually look like?"};
+  if(/exam|study|college|work|job|boss|deadline|pressure/.test(t)) return {text:"Pressure from studies or work can build up fast. Let's make it smaller.\n\nWhat is the single most urgent thing right now, and what could safely wait a day?"};
+  if(/angry|anger|frustrat|irritat/.test(t)) return {text:"Anger often sits on top of hurt or feeling unheard. What happened just before you started feeling this way?"};
+  if(/thank/.test(t)) return {text:"I'm glad I could be here. You can come back any time. 💛"};
+  return {text:"I'm listening. Tell me a little more about what's going on, and how it's affecting your day."};
+}
+function renderChat(){
+  if(!S.chat.length){S.chat.push({from:'mitra',text:`Hi${S.name?' '+S.name:''}, I'm Mitra. This is a safe, private space. How are you feeling right now?`});persist();}
+  $('chatBody').innerHTML=S.chat.map(m=>`<div class="bubble ${m.from==='me'?'me':'mitra'} ${m.alert?'alert':''}">${esc(m.text)}</div>`).join('');
+  $('chatBody').scrollTop=$('chatBody').scrollHeight;
+}
+function sendChat(e){
+  e.preventDefault();
+  const v=$('chatIn').value.trim(); if(!v) return;
+  $('chatIn').value=''; S.chat.push({from:'me',text:v.slice(0,1500)}); S.chat=S.chat.slice(-80); persist(); renderChat();
+  setTimeout(()=>{const r=mitraReply(v);S.chat.push({from:'mitra',text:r.text,alert:r.alert});persist();renderChat();},600);
+}
+function quick(t){$('chatIn').value=t;sendChat({preventDefault(){}});}
+
+/* ---------- Breathing ---------- */
+const PH=[{t:'In',s:'Breathe in slowly · 4 seconds',sc:1},{t:'Hold',s:'Hold gently · 4 seconds',sc:1},{t:'Out',s:'Breathe out fully · 4 seconds',sc:.62},{t:'Rest',s:'Rest and let the body settle · 4 seconds',sc:.62}];
+let bTimer=null,bIdx=0,bCycles=0;
+function toggleBreath(){bTimer?stopBreath(false):startBreath();}
+function startBreath(){bIdx=0;bCycles=0;$('bBtn').textContent='Stop session';$('bBtn').className='btn btn-ghost btn-block';runPhase();bTimer=setInterval(runPhase,4000);}
+function runPhase(){
+  const p=PH[bIdx];
+  $('ring').style.transform=`scale(${p.sc})`;$('halo').style.transform=`scale(${p.sc*1.1})`;
+  $('ring').textContent=p.t;
+  $('bText').textContent=p.t==='In'?'Breathe in':p.t==='Out'?'Breathe out':p.t==='Hold'?'Hold gently':'Rest';
+  $('bSub').textContent=p.s;
+  bIdx=(bIdx+1)%4; if(bIdx===0){bCycles++;if(bCycles>=3)stopBreath(true);}
+}
+function stopBreath(done){
+  clearInterval(bTimer);bTimer=null;
+  $('bBtn').textContent='Begin session';$('bBtn').className='btn btn-primary btn-block';
+  $('ring').style.transform='scale(1)';$('halo').style.transform='scale(1)';$('ring').textContent='Ready';
+  $('bText').textContent=done?'Well done. Notice how you feel now.':'Breathe in as the circle grows';
+  $('bSub').textContent=done?'Session saved.':'Box breathing · 4 seconds in, hold, out, hold';
+  if(done){S.breaths=(S.breaths||0)+1;persist();$('bCount').textContent=S.breaths;toast('Session complete. Great work 🌿');}
+}
+function careTab(t){
+  const b=t==='breathe';
+  $('breathePanel').classList.toggle('hidden',!b);$('counsellorPanel').classList.toggle('hidden',b);
+  $('tabB').classList.toggle('on',b);$('tabC').classList.toggle('on',!b);
+  $('bCount').textContent=S.breaths||0;
+}
+
+/* ---------- Profile ---------- */
+function saveName(){S.name=$('nameIn').value.trim().slice(0,40);persist();toast('Profile updated');}
+function eraseAll(){
+  try{localStorage.removeItem(KEY);}catch(e){}
+  S={...EMPTY};step=0;$('modal').classList.remove('show');toast('All data erased from this device');go('home');
+}
+$('modal').addEventListener('click',e=>{if(e.target.id==='modal')$('modal').classList.remove('show');});
+
+/* ---------- Boot ---------- */
+if(S.onboarded) go('home'); else go('home');
+</script>
+</body>
+</html>

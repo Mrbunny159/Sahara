@@ -1,5 +1,7 @@
 {
   "projects": {
     "default": "mental-wellness-12"
-  }
+  },
+  "targets": {},
+  "etags": {}
 }

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mental Wellness — Your Mind, Our Priority</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#7c6bd6" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Mental Wellness" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="app">
+
+    <!-- SPLASH -->
+    <section class="screen active" id="screen-splash">
+      <button class="lang-fab" data-open-lang>🌐</button>
+      <div class="splash-content">
+        <div class="logo">🧠</div>
+        <h1>Mental Wellness</h1>
+        <p class="tagline" data-i18n="splash.tagline">Your Mind, Our Priority</p>
+      </div>
+      <div class="splash-actions">
+        <button class="btn btn-primary" id="btn-get-started" data-i18n="splash.getStarted">Get Started</button>
+        <button class="btn btn-text" id="btn-guest" data-i18n="splash.guest">Continue as Guest</button>
+      </div>
+    </section>
+
+    <!-- AUTH -->
+    <section class="screen" id="screen-auth">
+      <button class="top-back">←</button>
+      <h2 class="screen-title" data-i18n="auth.title">Create Account</h2>
+      <p class="screen-subtitle" data-i18n="auth.subtitle">Let's get you started</p>
+      <input class="input field" id="input-name" type="text" placeholder="Full Name" data-i18n-ph="auth.name" />
+      <input class="input field" id="input-contact" type="text" placeholder="Email / Phone Number" data-i18n-ph="auth.contact" />
+      <input class="input field" id="input-password" type="password" placeholder="Password" data-i18n-ph="auth.password" />
+      <p class="error" id="auth-error"></p>
+      <button class="btn btn-primary" id="btn-signup" data-i18n="auth.signup">Sign Up</button>
+      <div class="divider" data-i18n="auth.or">or</div>
+      <div class="social-stack">
+        <button class="btn btn-outline" id="btn-google">🌐 <span data-i18n="auth.google">Continue with Google</span></button>
+        <button class="btn btn-outline" id="btn-phone">📞 <span data-i18n="auth.phone">Continue with Phone</span></button>
+      </div>
+      <p class="auth-footer"><span data-i18n="auth.haveAccount">Already have an account?</span> <a class="link" id="link-login" data-i18n="auth.login">Login</a></p>
+    </section>
+
+    <!-- OTP -->
+    <section class="screen" id="screen-otp">
+      <button class="top-back">←</button>
+      <h2 class="screen-title" data-i18n="otp.title">Verify Your Phone</h2>
+      <p class="screen-subtitle"><span data-i18n="otp.subtitle">Enter the OTP sent to</span><br /><strong>+91 98765 43210</strong></p>
+      <div class="otp-row">
+        <input class="otp-box" type="text" inputmode="numeric" maxlength="1" />
+        <input class="otp-box" type="text" inputmode="numeric" maxlength="1" />
+        <input class="otp-box" type="text" inputmode="numeric" maxlength="1" />
+        <input class="otp-box" type="text" inputmode="numeric" maxlength="1" />
+        <input class="otp-box" type="text" inputmode="numeric" maxlength="1" />
+        <input class="otp-box" type="text" inputmode="numeric" maxlength="1" />
+      </div>
+      <p class="error" id="otp-error"></p>
+      <button class="btn btn-primary" id="btn-verify" data-i18n="otp.verify">Verify</button>
+      <p class="resend"><span data-i18n="otp.resend">Resend OTP in</span> <span id="resend-timer">0:25</span></p>
+      <p class="auth-footer"><a class="link" id="link-change-number" data-i18n="otp.change">Change Number</a></p>
+    </section>
+
+    <!-- WELCOME -->
+    <section class="screen" id="screen-welcome">
+      <h2 class="screen-title" id="welcome-title">Welcome! 👋</h2>
+      <p class="screen-subtitle" data-i18n="welcome.subtitle">You are all set</p>
+      <div class="success-circle">✓</div>
+      <p class="screen-subtitle" data-i18n="welcome.text">Let's take a moment to understand how you feel.</p>
+      <button class="btn btn-primary" id="btn-welcome-next" data-i18n="welcome.next">Get Started</button>
+    </section>
+
+    <!-- ONBOARDING -->
+    <section class="screen" id="screen-onboarding">
+      <button class="top-back">←</button>
+      <p class="qa-progress" id="qa-progress">1 / 4</p>
+      <h2 class="screen-title qa-title" id="qa-title"></h2>
+      <div class="qa-options" id="qa-options"></div>
+      <textarea class="input qa-text" id="qa-text" placeholder="Type here...." data-i18n-ph="qa.placeholder" hidden></textarea>
+      <p class="error" id="qa-error"></p>
+      <div class="qa-nav">
+        <button class="btn btn-outline" id="btn-qa-back" data-i18n="qa.back">Back</button>
+        <button class="btn btn-primary" id="btn-qa-next" data-i18n="qa.next">Next</button>
+      </div>
+    </section>
+
+    <!-- RESULTS -->
+    <section class="screen" id="screen-results">
+      <button class="top-back">←</button>
+      <h2 class="screen-title" data-i18n="results.title">Here's what we understand</h2>
+      <div class="result-emoji" id="result-emoji">😞</div>
+      <p class="result-message" id="result-message"></p>
+      <p class="muted-center" data-i18n="results.score">Your Mood Score</p>
+      <p class="mood-pill" id="result-category">High Stress</p>
+      <button class="btn btn-green" id="btn-view-suggestions" data-i18n="results.viewSuggestions">View Suggestions</button>
+    </section>
+
+    <!-- SUGGESTIONS -->
+    <section class="screen" id="screen-suggestions">
+      <h2 class="screen-title title-left" data-i18n="sug.title">Recommended for you</h2>
+      <div class="suggestions-list" id="suggestions-list"></div>
+    </section>
+
+    <!-- COUNSELLOR INFO -->
+    <section class="screen" id="screen-counsellor">
+      <button class="top-back">←</button>
+      <h2 class="screen-title" data-i18n="svc.counsellor">Talk to a Counsellor</h2>
+      <div class="illustration">👩💬</div>
+      <p class="result-message" data-i18n="cou.text">Connect with a professional anytime you need support.</p>
+      <ul class="check-list">
+        <li>✅ <span data-i18n="cou.secure">Confidential & Secure</span></li>
+        <li>✅ <span data-i18n="cou.verified">Verified Counsellors</span></li>
+        <li>✅ <span data-i18n="cou.avc">Audio / Video / Chat</span></li>
+      </ul>
+      <button class="btn btn-green" id="btn-book-session" data-i18n="cou.book">Book a Session</button>
+      <p class="auth-footer"><a class="link" id="link-view-counsellors" data-i18n="cou.view">View Counsellors</a></p>
+    </section>
+
+    <!-- MEDITATE -->
+    <section class="screen" id="screen-meditate">
+      <button class="top-back">←</button>
+      <h2 class="screen-title" data-i18n="svc.meditate">Relax & Meditate</h2>
+      <div class="illustration">🧘</div>
+      <p class="result-message" data-i18n="med.text">Take a deep breath and relax your mind.</p>
+      <ul class="check-list">
+        <li>✅ <span data-i18n="med.calm">5 Min Calm</span></li>
+        <li>✅ <span data-i18n="med.sleep">Sleep Better</span></li>
+        <li>✅ <span data-i18n="med.anxiety">Anxiety Relief</span></li>
+      </ul>
+      <button class="btn btn-green" id="btn-start-session" data-i18n="med.start">Start Session</button>
+      <p class="auth-footer"><a class="link demo-soon" data-i18n="med.explore">Explore More</a></p>
+    </section>
+
+    <!-- COUNSELLOR LIST -->
+    <section class="screen" id="screen-counsellors">
+      <button class="top-back">←</button>
+      <h2 class="screen-title title-left" data-i18n="cl.title">Verified Counsellors</h2>
+      <p class="screen-subtitle subtitle-left" data-i18n="cl.subtitle">Book a 1:1 session with a certified expert.</p>
+      <div class="counsellor-list" id="counsellor-list"></div>
+      <div class="insight-card">
+        <strong data-i18n="cl.sessions">Your upcoming sessions</strong>
+        <div id="booking-list"></div>
+      </div>
+    </section>
+
+    <!-- LANGUAGE PICKER -->
+    <section class="screen" id="screen-language">
+      <button class="top-back">←</button>
+      <h2 class="screen-title title-left" data-i18n="lang.title">Choose Language</h2>
+      <div class="lang-list" id="lang-list"></div>
+    </section>
+
+    <!-- HOME -->
+    <section class="screen" id="screen-home">
+      <h2 class="home-greeting" id="home-greeting">Good Morning! 👋</h2>
+      <p class="screen-subtitle subtitle-left" data-i18n="home.how">How are you feeling today?</p>
+      <div class="mood-row" id="mood-row"></div>
+      <div class="quick-grid">
+        <button class="quick-card" data-screen="screen-mood-tracker">
+          <span class="quick-icon icon-blue">📈</span><strong data-i18n="home.checkin">Daily Check-in</strong><small data-i18n="home.checkin.desc">Track your mood</small>
+        </button>
+        <button class="quick-card" data-screen="screen-journal">
+          <span class="quick-icon icon-orange">📓</span><strong data-i18n="home.journal">Journal</strong><small data-i18n="home.journal.desc">Write your thoughts</small>
+        </button>
+        <button class="quick-card" data-screen="screen-meditate">
+          <span class="quick-icon icon-green">🌿</span><strong data-i18n="home.meditate">Meditate</strong><small data-i18n="home.meditate.desc">Relax your mind</small>
+        </button>
+        <button class="quick-card" data-screen="screen-counsellor">
+          <span class="quick-icon icon-pink">👩️</span><strong data-i18n="home.expert">Talk to Expert</strong><small data-i18n="home.expert.desc">Get professional help</small>
+        </button>
+      </div>
+      <div class="tip-card">
+        <span>💚</span>
+        <div><strong data-i18n="home.tip">Daily Tip</strong><p id="daily-tip"></p></div>
+      </div>
+    </section>
+
+    <!-- MOOD TRACKER -->
+    <section class="screen" id="screen-mood-tracker">
+      <button class="top-back">←</button>
+      <h2 class="screen-title title-left" data-i18n="svc.mood">Mood Tracker</h2>
+      <p class="screen-subtitle subtitle-left" data-i18n="mt.week">This Week</p>
+      <div class="chart" id="mood-chart"></div>
+      <div class="insight-card"><strong data-i18n="mt.insights">Mood Insights</strong><p id="mood-insight"></p></div>
+      <button class="btn btn-primary" id="btn-view-history" data-i18n="mt.viewHistory">View History</button>
+      <div class="history-list" id="mood-history" hidden></div>
+    </section>
+
+    <!-- JOURNAL -->
+    <section class="screen" id="screen-journal">
+      <h2 class="screen-title" data-i18n="j.title">Journal</h2>
+      <div class="tabs">
+        <button class="tab active" id="tab-entries" data-i18n="j.entries">My Entries</button>
+        <button class="tab" id="tab-new" data-i18n="j.new">New Entry</button>
+      </div>
+      <div class="entries-list" id="journal-entries"></div>
+      <div id="journal-new" hidden>
+        <input class="input field" id="journal-title" type="text" placeholder="Title" data-i18n-ph="j.titlePh" />
+        <textarea class="input field" id="journal-content" placeholder="Write your thoughts...." data-i18n-ph="j.contentPh"></textarea>
+        <button class="btn btn-green" id="btn-save-journal" data-i18n="j.save">Save Entry</button>
+      </div>
+    </section>
+
+    <!-- COMMUNITY -->
+    <section class="screen" id="screen-community">
+      <h2 class="screen-title" data-i18n="c.title">Community</h2>
+      <p class="screen-subtitle" data-i18n="c.subtitle">You are not alone 💜 Connect, share and support.</p>
+      <div class="new-post">
+        <input class="input" id="new-post-input" type="text" placeholder="Share something supportive...." data-i18n-ph="c.ph" />
+        <button class="btn btn-primary" id="btn-new-post" data-i18n="c.newPost">+ New Post</button>
+      </div>
+      <div id="posts-list"></div>
+    </section>
+
+    <!-- PROFILE -->
+    <section class="screen" id="screen-profile">
+      <div class="profile-head">
+        <div class="avatar" id="profile-avatar">F</div>
+        <strong id="profile-name">Guest User</strong>
+        <small id="profile-contact"></small>
+      </div>
+      <div class="stats-row">
+        <div class="stat"><strong id="stat-moods">0</strong><small data-i18n="p.moods">Moods</small></div>
+        <div class="stat"><strong id="stat-journals">0</strong><small data-i18n="p.entries">Entries</small></div>
+        <div class="stat"><strong id="stat-posts">0</strong><small data-i18n="p.posts">Posts</small></div>
+      </div>
+      <button class="option" data-open-lang>🌐 <span data-i18n="p.language">Language</span>: <span id="lang-current">English</span></button>
+      <button class="option demo-soon">👑 <span data-i18n="p.premium">Go Premium</span></button>
+      <button class="option" id="btn-logout">🚪 <span data-i18n="p.logout">Logout</span></button>
+    </section>
+
+    <!-- BOTTOM NAV -->
+    <nav class="bottom-nav" id="bottom-nav" hidden>
+      <button class="nav-item active" data-screen="screen-home">🏠<small data-i18n="nav.home">Home</small></button>
+      <button class="nav-item" data-screen="screen-journal">📓<small data-i18n="nav.journal">Journal</small></button>
+      <button class="nav-item" data-screen="screen-community">👥<small data-i18n="nav.community">Community</small></button>
+      <button class="nav-item" data-screen="screen-profile">👤<small data-i18n="nav.profile">Profile</small></button>
+    </nav>
+
+    <!-- INSTALL BANNER -->
+    <div class="install-banner" id="install-banner" hidden>
+      <span data-i18n="install.text">Install the app on your device</span>
+      <div class="install-actions">
+        <button class="btn btn-text" id="btn-dismiss-install" data-i18n="install.later">Later</button>
+        <button class="btn btn-primary btn-sm" id="btn-install" data-i18n="install.install">Install</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script type="module" src="js/lang.js"></script>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

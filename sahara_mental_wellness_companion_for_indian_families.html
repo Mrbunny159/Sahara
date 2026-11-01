@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter,+'Noto+Sans+Devanagari',+sans-serif:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"secondary-fixed":"#aeedf7","on-secondary-fixed-variant":"#004f57","surface":"#f8f9ff","on-secondary-container":"#2a6b74","inverse-surface":"#233142","on-primary-fixed-variant":"#155041","surface-container-lowest":"#ffffff","on-primary-fixed":"#002018","on-tertiary-fixed":"#3c0800","surface-tint":"#316858","surface-container-high":"#dbe9ff","surface-container":"#e4efff","surface-container-low":"#eef4ff","secondary":"#246770","on-error-container":"#93000a","surface-bright":"#f8f9ff","background":"#f8f9ff","on-primary":"#ffffff","on-background":"#0e1d2c","secondary-container":"#abeaf4","inverse-primary":"#99d2be","on-surface-variant":"#404945","primary-fixed":"#b5efda","surface-container-highest":"#d5e4f9","secondary-fixed-dim":"#92d1db","surface-dim":"#cddbf0","on-secondary":"#ffffff","surface-variant":"#d5e4f9","on-tertiary-fixed-variant":"#7c2e19","on-surface":"#0e1d2c","tertiary":"#9a442d","tertiary-container":"#fa8f72","on-secondary-fixed":"#001f24","inverse-on-surface":"#e9f1ff","tertiary-fixed-dim":"#ffb4a1","on-tertiary":"#ffffff","on-tertiary-container":"#732713","error-container":"#ffdad6","outline-variant":"#bfc9c3","error":"#ba1a1a","tertiary-fixed":"#ffdbd2","primary":"#316858","primary-container":"#7fb7a4","on-primary-container":"#0a493a","outline":"#707975","on-error":"#ffffff","primary-fixed-dim":"#99d2be"},"borderRadius":{"DEFAULT":"1rem","lg":"2rem","xl":"3rem","full":"9999px"},"spacing":{"space-xl":"2.5rem","gutter":"1.5rem","space-sm":"0.75rem","space-lg":"1.75rem","margin-mobile":"1.25rem","gutter-mobile":"1rem","space-md":"1.25rem","margin-tablet":"1.75rem","space-xs":"0.375rem","margin":"2.5rem"},"fontFamily":{"body-sm":["\"Inter, 'Noto Sans Devanagari', sans-serif\""],"label-md":["\"Inter, 'Noto Sans Devanagari', sans-serif\""],"title-lg":["\"Inter, 'Noto Sans Devanagari', sans-serif\""],"headline-md":["\"Inter, 'Noto Sans Devanagari', sans-serif\""],"body-lg":["\"Inter, 'Noto Sans Devanagari', sans-serif\""],"headline-sm":["\"Inter, 'Noto Sans Devanagari', sans-serif\""],"display-lg":["\"Inter, 'Noto Sans Devanagari', sans-serif\""],"headline-lg-mobile":["\"Inter, 'Noto Sans Devanagari', sans-serif\""],"display-lg-mobile":["\"Inter, 'Noto Sans Devanagari', sans-serif\""],"label-lg":["\"Inter, 'Noto Sans Devanagari', sans-serif\""],"headline-lg":["\"Inter, 'Noto Sans Devanagari', sans-serif\""],"body-md":["\"Inter, 'Noto Sans Devanagari', sans-serif\""],"label-sm":["\"Inter, 'Noto Sans Devanagari', sans-serif\""]},"fontSize":{"body-sm":["0.875rem",{"lineHeight":"1.5","letterSpacing":"0.01em","fontWeight":"400"}],"label-md":["0.8125rem",{"lineHeight":"1.25","letterSpacing":"0.02em","fontWeight":"500"}],"title-lg":["1.125rem",{"lineHeight":"1.4","letterSpacing":"0em","fontWeight":"600"}],"headline-md":["1.75rem",{"lineHeight":"1.3","letterSpacing":"-0.01em","fontWeight":"600"}],"body-lg":["1.125rem",{"lineHeight":"1.6","letterSpacing":"0em","fontWeight":"400"}],"headline-sm":["1.375rem",{"lineHeight":"1.35","letterSpacing":"-0.005em","fontWeight":"600"}],"display-lg":["3.25rem",{"lineHeight":"1.15","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-lg-mobile":["1.75rem",{"lineHeight":"1.3","letterSpacing":"-0.01em","fontWeight":"600"}],"display-lg-mobile":["2.25rem",{"lineHeight":"1.2","letterSpacing":"-0.015em","fontWeight":"700"}],"label-lg":["0.9375rem",{"lineHeight":"1.25","letterSpacing":"0.01em","fontWeight":"600"}],"headline-lg":["2.25rem",{"lineHeight":"1.25","letterSpacing":"-0.015em","fontWeight":"600"}],"body-md":["1rem",{"lineHeight":"1.55","letterSpacing":"0em","fontWeight":"400"}],"label-sm":["0.75rem",{"lineHeight":"1.2","letterSpacing":"0.025em","fontWeight":"500"}]}}}};</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 bg-surface/95 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-20 max-w-[1200px] mx-auto px-margin-mobile md:px-margin-tablet lg:px-margin flex items-center justify-between"><div class="flex items-center gap-space-sm"><img alt="SAHARA Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1U2I7xDnGWBpGBsZ4FKX9xeSIczoD6Jior3fBTdmmKknCdjeEUV-VXo5PZ_qhbB-hRmO_x6Mu209jKlPUNk0CsSP0gS4fK3bQ_XvpASUMSM95fhX4iBjK3aaTiXLwwD1waimugxB8iQ-G-3uobrNxQ9qfBAkulx6kqzoIvdUNaQQl23JTov8MMOHks_E8gd0mcr2ZMoEgxljSQhnstTzSYdPEouvN325xuXU-Gzy0Em5LrmkWgq8UMd_Kv2"/><span class="font-title-lg text-title-lg tracking-tight text-on-surface font-semibold">SAHARA</span></div><nav class="hidden md:flex items-center gap-space-md" data-active-classes="bg-surface-container-high text-on-surface font-semibold rounded-full"><a aria-current="page" class="px-space-sm py-space-xs transition-colors duration-150 bg-surface-container-high text-on-surface font-semibold rounded-full" data-path="features" href="#">Features</a><a class="px-space-sm py-space-xs text-on-surface hover:text-primary transition-colors duration-150 font-label-lg text-label-lg" data-path="how-it-works" href="#">How it works</a><a class="px-space-sm py-space-xs text-on-surface hover:text-primary transition-colors duration-150 font-label-lg text-label-lg" data-path="privacy" href="#">Privacy</a><a class="px-space-sm py-space-xs text-on-surface hover:text-primary transition-colors duration-150 font-label-lg text-label-lg" data-path="community" href="#">Community</a><a class="px-space-sm py-space-xs text-on-surface hover:text-primary transition-colors duration-150 font-label-lg text-label-lg" data-path="contact" href="#">Contact</a></nav><div class="flex items-center gap-space-sm"><a class="inline-flex items-center justify-center bg-tertiary text-on-tertiary hover:bg-tertiary-container hover:text-on-tertiary-container transition-all duration-200 rounded-full px-space-lg py-space-sm font-label-lg text-label-lg shadow-[0_4px_16px_rgba(154,68,45,0.2)] hover:shadow-[0_6px_20px_rgba(154,68,45,0.3)]" data-path="early-access" href="#">Join early access</a><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-2 ring-primary-container/40" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzWD0UQMIRnDhDw7Nwa8U_LwRxfBQ5THbbQcRtTPsi-H6lUTvHg7fT8-pkZmpeTLoC4f0LJTinSDiDSNVRBSvxu4eAShQ_2d8lJmFNyXwvEOmKBO8vmaNdNOjErL7ltKe1pXyEkM8iNieJkieXtomkPRuzChiG1f-4RoEtV9Nho1RLGcRCidPEdyRaV-6LLBG4KZ94CCoYNUjbHIop1UIlL0XBftHZE-80yYoCxmM9fmrOG57wCAT--g"/></div></div></header><main class="w-full pt-20 bg-surface"><div class="flex flex-col w-full">
+<!-- HERO SECTION -->
+<section class="relative overflow-hidden px-margin-mobile md:px-margin-tablet lg:px-margin py-space-xl lg:py-28">
+<!-- Atmospheric Ambient Glows -->
+<div class="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-primary-container/20 blur-3xl pointer-events-none"></div>
+<div class="absolute top-1/2 -right-24 w-80 h-80 rounded-full bg-tertiary-fixed/30 blur-3xl pointer-events-none"></div>
+<div class="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center relative z-10">
+<!-- Left Column: Narrative & Action -->
+<div class="lg:col-span-7 flex flex-col items-start gap-space-md">
+<!-- Hindi Tagline Badge -->
+<div class="inline-flex items-center gap-space-xs px-space-md py-1.5 rounded-full bg-surface-container border border-outline-variant/40 shadow-sm">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-title-lg text-title-lg text-secondary tracking-normal font-medium">जब कोई नहीं, तब सहारा</span>
+</div>
+<h1 class="font-display-lg text-display-lg text-secondary leading-[1.12] tracking-tight">
+          A calm, private space for your mind, for every age in your family.
+        </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+          India's first all-generation mental wellness companion, designed for teenagers aged 13 to elders over 70. Built with uncompromising privacy, cultural warmth, and zero judgment.
+        </p>
+<!-- CTA Buttons -->
+<div class="flex flex-wrap items-center gap-space-sm pt-space-xs w-full sm:w-auto">
+<a class="w-full sm:w-auto inline-flex items-center justify-center bg-tertiary text-on-tertiary hover:bg-tertiary-container hover:text-on-tertiary-container transition-all duration-200 rounded-full px-space-lg py-space-sm font-label-lg text-label-lg shadow-[0_8px_24px_rgba(154,68,45,0.22)] hover:shadow-[0_12px_28px_rgba(154,68,45,0.3)]" href="#early-access-form">
+            Join early access
+          </a>
+<a class="w-full sm:w-auto inline-flex items-center justify-center bg-surface-container-lowest text-secondary border border-secondary/40 hover:bg-secondary-container/30 transition-colors duration-200 rounded-full px-space-lg py-space-sm font-label-lg text-label-lg" href="#how-it-works-section">
+            See how it works
+          </a>
+</div>
+<!-- Trust Micro-Pills -->
+<div class="flex flex-wrap items-center gap-y-2 gap-x-4 pt-space-xs text-on-surface-variant font-label-md text-label-md">
+<span class="inline-flex items-center gap-1.5">
+<span class="material-symbols-outlined text-base text-primary">lock</span>
+            100% Encrypted & Anonymous
+          </span>
+<span class="text-outline-variant">•</span>
+<span class="inline-flex items-center gap-1.5">
+<span class="text-base">🇮🇳</span>
+            Made for Indian Families
+          </span>
+<span class="text-outline-variant">•</span>
+<span class="inline-flex items-center gap-1.5">
+<span class="material-symbols-outlined text-base text-primary">spa</span>
+            Zero Ads or Data Sharing
+          </span>
+</div>
+</div>
+<!-- Right Column: Interactive Mitra Mobile Mockup -->
+<div class="lg:col-span-5 flex justify-center lg:justify-end mt-space-md lg:mt-0">
+<div class="relative w-full max-w-[390px] rounded-[2.5rem] bg-surface-container-lowest p-4 shadow-[0_20px_50px_-10px_rgba(31,45,61,0.12)] border border-outline-variant/50">
+<!-- Device Notch Bar -->
+<div class="w-28 h-1 bg-outline-variant/40 rounded-full mx-auto mb-4"></div>
+<!-- Companion Header Inside App -->
+<div class="flex items-center justify-between pb-3.5 mb-3.5 border-b border-surface-container-high">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img alt="Mitra Companion" class="w-12 h-12 rounded-full object-cover ring-2 ring-primary-container shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzWD0UQMIRnDhDw7Nwa8U_LwRxfBQ5THbbQcRtTPsi-H6lUTvHg7fT8-pkZmpeTLoC4f0LJTinSDiDSNVRBSvxu4eAShQ_2d8lJmFNyXwvEOmKBO8vmaNdNOjErL7ltKe1pXyEkM8iNieJkieXtomkPRuzChiG1f-4RoEtV9Nho1RLGcRCidPEdyRaV-6LLBG4KZ94CCoYNUjbHIop1UIlL0XBftHZE-80yYoCxmM9fmrOG57wCAT--g"/>
+<span class="absolute bottom-0 right-0 w-3 h-3 bg-primary rounded-full border-2 border-surface-container-lowest" title="Always here"></span>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<h3 class="font-title-lg text-title-lg text-on-surface font-semibold leading-tight">Mitra (मित्र)</h3>
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<p class="font-body-sm text-body-sm text-primary font-medium">Your caring companion • Always here</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-xl">more_vert</span>
+</div>
+<!-- Chat Conversation Window -->
+<div class="space-y-3.5 min-h-[310px] flex flex-col justify-end">
+<!-- Timestamp / Sanctuary Notice -->
+<div class="text-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant/80 bg-surface-container px-3 py-1 rounded-full">Private sanctuary • Encrypted</span>
+</div>
+<!-- User Bubble -->
+<div class="flex justify-end">
+<div class="max-w-[85%] bg-secondary text-on-secondary rounded-2xl rounded-tr-xs p-3.5 shadow-sm">
+<p class="font-body-sm text-body-sm leading-relaxed">
+                  "I've been feeling so overwhelmed with board exams and expectations at home lately..."
+                </p>
+<div class="text-right text-[10px] opacity-75 mt-1">10:42 PM</div>
+</div>
+</div>
+<!-- Mitra Response Bubble -->
+<div class="flex items-start gap-2">
+<img alt="Mitra Mini" class="w-6 h-6 rounded-full object-cover ring-1 ring-primary-container mt-1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzWD0UQMIRnDhDw7Nwa8U_LwRxfBQ5THbbQcRtTPsi-H6lUTvHg7fT8-pkZmpeTLoC4f0LJTinSDiDSNVRBSvxu4eAShQ_2d8lJmFNyXwvEOmKBO8vmaNdNOjErL7ltKe1pXyEkM8iNieJkieXtomkPRuzChiG1f-4RoEtV9Nho1RLGcRCidPEdyRaV-6LLBG4KZ94CCoYNUjbHIop1UIlL0XBftHZE-80yYoCxmM9fmrOG57wCAT--g"/>
+<div class="max-w-[85%] bg-surface-container-low text-on-surface rounded-2xl rounded-tl-xs p-3.5 border border-outline-variant/30 shadow-sm">
+<p class="font-body-sm text-body-sm text-on-surface leading-relaxed">
+                  I hear you, and it's completely okay to feel this way. You're carrying so much pressure right now. Take a gentle breath with me — would you like to try a 2-minute 4-7-8 calming breath together?
+                </p>
+<div class="text-left text-[10px] text-on-surface-variant mt-1.5">10:43 PM</div>
+</div>
+</div>
+<!-- Interactive Micro-practice Action Pill -->
+<div class="pt-1 flex flex-col items-start gap-2">
+<button class="inline-flex items-center gap-2 bg-primary-container/30 hover:bg-primary-container/50 text-on-primary-container px-3.5 py-2 rounded-full border border-primary-container font-label-md text-label-md transition-all shadow-sm" type="button">
+<span class="material-symbols-outlined text-primary text-base">spa</span>
+<span>🌿 Start 2-min breathwork</span>
+</button>
+</div>
+</div>
+<!-- Mock Message Input -->
+<div class="mt-4 pt-3 border-t border-surface-container-high flex items-center gap-2">
+<div class="flex-1 bg-surface-container rounded-full px-3.5 py-2 text-on-surface-variant font-body-sm text-body-sm flex items-center justify-between">
+<span>Write freely to Mitra...</span>
+<span class="material-symbols-outlined text-secondary text-base">mic</span>
+</div>
+<button class="w-9 h-9 rounded-full bg-secondary text-on-secondary flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-base">send</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- PROBLEM SECTION ("Breaking the Silence in Indian Homes") -->
+<section class="py-space-xl bg-surface-container-low/70">
+<div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin-tablet lg:px-margin">
+<div class="max-w-2xl mx-auto text-center mb-space-lg">
+<span class="font-label-md text-label-md uppercase tracking-wider text-tertiary font-semibold block mb-space-xs">The Reality of Our Homes</span>
+<h2 class="font-headline-lg text-headline-lg text-secondary leading-snug">
+          Many families in India carry stress in silence. Support is hard to reach, expensive, or uncomfortable to ask for.
+        </h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Problem Card 1 -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-lg border border-outline-variant/40 shadow-[0_4px_20px_-2px_rgba(31,45,61,0.04)] flex flex-col justify-between hover:shadow-md transition-shadow">
+<div>
+<div class="w-12 h-12 rounded-2xl bg-secondary-container/40 text-secondary flex items-center justify-center mb-space-md">
+<span class="material-symbols-outlined text-2xl">forum</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-secondary mb-space-xs">The Stigma Around Sharing</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              Families often avoid discussing anxiety, exam overwhelm, or low moods due to fear of judgment or the lingering pressure of <em>"log kya kahenge"</em>.
+            </p>
+</div>
+<div class="mt-space-md pt-space-xs border-t border-surface-container-high text-primary font-label-md text-label-md flex items-center gap-1">
+<span>A zero-judgment safe space</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</div>
+</div>
+<!-- Problem Card 2 -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-lg border border-outline-variant/40 shadow-[0_4px_20px_-2px_rgba(31,45,61,0.04)] flex flex-col justify-between hover:shadow-md transition-shadow">
+<div>
+<div class="w-12 h-12 rounded-2xl bg-tertiary-fixed/60 text-tertiary flex items-center justify-center mb-space-md">
+<span class="material-symbols-outlined text-2xl">distance</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-secondary mb-space-xs">Support Feels Distant & Costly</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              Traditional mental healthcare is often financially out of reach, geographically remote, and intimidating to navigate for everyday working households.
+            </p>
+</div>
+<div class="mt-space-md pt-space-xs border-t border-surface-container-high text-primary font-label-md text-label-md flex items-center gap-1">
+<span>Accessible daily guidance</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</div>
+</div>
+<!-- Problem Card 3 -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-lg border border-outline-variant/40 shadow-[0_4px_20px_-2px_rgba(31,45,61,0.04)] flex flex-col justify-between hover:shadow-md transition-shadow">
+<div>
+<div class="w-12 h-12 rounded-2xl bg-primary-fixed/60 text-primary flex items-center justify-center mb-space-md">
+<span class="material-symbols-outlined text-2xl">shield_person</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-secondary mb-space-xs">Fear of Compromised Privacy</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              The persistent hesitation that vulnerable personal thoughts, emotional diaries, or private challenges might be read by family members or shared across platforms.
+            </p>
+</div>
+<div class="mt-space-md pt-space-xs border-t border-surface-container-high text-primary font-label-md text-label-md flex items-center gap-1">
+<span>Rigorous privacy by default</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- MEET MITRA SECTION ("Your Patient, 24/7 Companion") -->
+<section class="py-space-xl overflow-hidden relative">
+<div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin-tablet lg:px-margin">
+<div class="bg-surface-container-lowest rounded-3xl p-space-md md:p-space-xl border border-outline-variant/40 shadow-[0_12px_32px_-4px_rgba(46,111,120,0.06)] grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
+<!-- Visual Column -->
+<div class="lg:col-span-5 flex flex-col items-center">
+<div class="relative w-full max-w-[340px] aspect-square rounded-2xl overflow-hidden shadow-lg border-2 border-primary-container/40">
+<img alt="Mitra - Caring Companion" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzWD0UQMIRnDhDw7Nwa8U_LwRxfBQ5THbbQcRtTPsi-H6lUTvHg7fT8-pkZmpeTLoC4f0LJTinSDiDSNVRBSvxu4eAShQ_2d8lJmFNyXwvEOmKBO8vmaNdNOjErL7ltKe1pXyEkM8iNieJkieXtomkPRuzChiG1f-4RoEtV9Nho1RLGcRCidPEdyRaV-6LLBG4KZ94CCoYNUjbHIop1UIlL0XBftHZE-80yYoCxmM9fmrOG57wCAT--g"/>
+<div class="absolute inset-0 bg-gradient-to-t from-secondary/40 via-transparent to-transparent"></div>
+<div class="absolute bottom-4 left-4 right-4 bg-surface-container-lowest/95 backdrop-blur-md p-3 rounded-xl border border-outline-variant/40 flex items-center justify-between">
+<div>
+<span class="font-title-lg text-title-lg text-secondary font-semibold block">Mitra (मित्र)</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Sanskrit for "Friend & Ally"</span>
+</div>
+<span class="w-3 h-3 rounded-full bg-primary ring-4 ring-primary-container/30"></span>
+</div>
+</div>
+</div>
+<!-- Narrative Column -->
+<div class="lg:col-span-7 flex flex-col gap-space-md">
+<div>
+<span class="font-label-md text-label-md uppercase tracking-wider text-primary font-semibold block mb-space-xs">Meet Your Compassionate Ally</span>
+<h2 class="font-headline-lg text-headline-lg text-secondary mb-space-xs">
+              Your patient, 24/7 companion who listens without rush or prejudice.
+            </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+              Mitra is always there for you—whether it is 2:00 AM after a sleepless night of worry or mid-afternoon amid hectic household demands. Mitra never tires, never judges, and converses with everyday cultural empathy in English and Indian context.
+            </p>
+</div>
+<!-- 3 Key Sanctuary Pillars -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-sm pt-space-xs">
+<div class="bg-surface-container-low p-space-sm rounded-xl border border-outline-variant/30">
+<span class="material-symbols-outlined text-primary mb-1 text-2xl">language</span>
+<h4 class="font-title-lg text-title-lg text-on-surface text-base font-semibold mb-1">Culturally Nuanced</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Deeply understands family bonds, exam stress, and life milestones in India.</p>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-xl border border-outline-variant/30">
+<span class="material-symbols-outlined text-primary mb-1 text-2xl">self_improvement</span>
+<h4 class="font-title-lg text-title-lg text-on-surface text-base font-semibold mb-1">Gentle Practices</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Bite-sized breathing, grounding routines, and introspective journaling.</p>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-xl border border-outline-variant/30">
+<span class="material-symbols-outlined text-primary mb-1 text-2xl">hearing</span>
+<h4 class="font-title-lg text-title-lg text-on-surface text-base font-semibold mb-1">Safe Listening</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Unconditional acceptance, confidential venting, and emotional reassurance.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- FEATURES SECTION ("Six pillars of family mental wellness") -->
+<section class="py-space-xl bg-surface-container-low/50">
+<div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin-tablet lg:px-margin">
+<div class="max-w-2xl mx-auto text-center mb-space-xl">
+<span class="font-label-md text-label-md uppercase tracking-wider text-secondary font-semibold block mb-space-xs">Comprehensive Wellbeing</span>
+<h2 class="font-headline-lg text-headline-lg text-secondary">
+          Six pillars of family mental wellness
+        </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-2">
+          Gently structured tools crafted to nurture resilience, peace, and clarity every single day.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Feature 1 -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-lg border border-outline-variant/40 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 rounded-xl bg-primary-fixed/60 text-primary flex items-center justify-center mb-space-md">
+<span class="material-symbols-outlined text-2xl">air</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-secondary mb-space-xs">Guided Breathing</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              Short calming exercises specifically structured for moments of sudden stress, exam jitters, or preparing the body for a restful night's sleep.
+            </p>
+</div>
+<span class="mt-space-md font-label-md text-label-md text-primary font-semibold">2 to 5 min sessions</span>
+</div>
+<!-- Feature 2 -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-lg border border-outline-variant/40 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 rounded-xl bg-secondary-container/50 text-secondary flex items-center justify-center mb-space-md">
+<span class="material-symbols-outlined text-2xl">sentiment_satisfied</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-secondary mb-space-xs">Mood Tracking</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              Simple, pressure-free daily check-ins that reveal emotional patterns, seasonal triggers, and joyful highlights gently over time.
+            </p>
+</div>
+<span class="mt-space-md font-label-md text-label-md text-primary font-semibold">One-tap reflection</span>
+</div>
+<!-- Feature 3 -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-lg border border-outline-variant/40 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 rounded-xl bg-tertiary-fixed/50 text-tertiary flex items-center justify-center mb-space-md">
+<span class="material-symbols-outlined text-2xl">chat_bubble</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-secondary mb-space-xs">Chat with Mitra</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              A deeply private sanctuary to talk through worries, decompress from daily fatigue, or articulate thoughts at your very own pace.
+            </p>
+</div>
+<span class="mt-space-md font-label-md text-label-md text-primary font-semibold">Always on • Empathetic</span>
+</div>
+<!-- Feature 4 -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-lg border border-outline-variant/40 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 rounded-xl bg-primary-fixed/60 text-primary flex items-center justify-center mb-space-md">
+<span class="material-symbols-outlined text-2xl">diversity_1</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-secondary mb-space-xs">Community Circles</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              Moderated, anonymous, supportive circles built around shared experiences: board exam prep, parenting hurdles, caregiver fatigue, and healthy aging.
+            </p>
+</div>
+<span class="mt-space-md font-label-md text-label-md text-primary font-semibold">Kind & moderated</span>
+</div>
+<!-- Feature 5 -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-lg border border-outline-variant/40 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 rounded-xl bg-secondary-container/50 text-secondary flex items-center justify-center mb-space-md">
+<span class="material-symbols-outlined text-2xl">calendar_month</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-secondary mb-space-xs">Counsellor Booking</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              Seamlessly schedule 1-on-1 sessions with verified, empathetic professional counsellors in a few simple, confidential taps.
+            </p>
+</div>
+<span class="mt-space-md font-label-md text-label-md text-primary font-semibold">Verified Indian specialists</span>
+</div>
+<!-- Feature 6 -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-lg border border-tertiary-fixed/60 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 rounded-xl bg-tertiary-fixed/70 text-tertiary flex items-center justify-center mb-space-md">
+<span class="material-symbols-outlined text-2xl">emergency</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-tertiary mb-space-xs">Emergency SOS</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              Immediate, prominent access to national emergency assistance and Tele-MANAS (14416) crisis hotlines, always one tap away.
+            </p>
+</div>
+<span class="mt-space-md font-label-md text-label-md text-tertiary font-semibold">National Tele-MANAS 14416</span>
+</div>
+</div>
+</div>
+</section>
+<!-- BUILT FOR EVERY AGE SECTION ("From 13 to 70+: Tailored Support for Each Chapter") -->
+<section class="py-space-xl">
+<div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin-tablet lg:px-margin">
+<div class="max-w-2xl mx-auto text-center mb-space-xl">
+<span class="font-label-md text-label-md uppercase tracking-wider text-primary font-semibold block mb-space-xs">Generational Care</span>
+<h2 class="font-headline-lg text-headline-lg text-secondary">
+          From 13 to 70+: Tailored Support for Each Chapter
+        </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-2">
+          Every stage of life carries its distinct joys and invisible pressures. SAHARA adapts to meet you right where you are.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Teenagers Column -->
+<div class="bg-surface-container-lowest rounded-3xl p-space-lg border border-outline-variant/40 shadow-sm flex flex-col">
+<div class="flex items-center gap-2 mb-space-sm">
+<span class="px-3 py-1 rounded-full bg-secondary-container/40 text-secondary font-label-sm text-label-sm font-semibold">Ages 13–19</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-secondary mb-space-sm">Teenagers</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-md">
+            Academic milestones, board exam anxiety, shifting peer friendships, self-identity questions, and finding one's personal voice.
+          </p>
+<ul class="space-y-2.5 text-on-surface font-body-sm text-body-sm mt-auto pt-space-sm border-t border-surface-container-high">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+<span>Gentle private journaling tools</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+<span>Pre-exam 3-minute breath releases</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+<span>Completely anonymous venting space</span>
+</li>
+</ul>
+</div>
+<!-- Working Adults Column -->
+<div class="bg-surface-container-lowest rounded-3xl p-space-lg border-2 border-primary/30 shadow-md flex flex-col relative">
+<div class="absolute -top-3 right-6 bg-primary text-on-primary font-label-sm text-label-sm font-bold px-3 py-0.5 rounded-full shadow-sm">
+            Sandwich Generation
+          </div>
+<div class="flex items-center gap-2 mb-space-sm">
+<span class="px-3 py-1 rounded-full bg-primary-fixed/50 text-on-primary-fixed-variant font-label-sm text-label-sm font-semibold">Ages 20–55</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-secondary mb-space-sm">Working Adults</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-md">
+            Workplace burnout, financial responsibilities, balancing marriage and parenting, and caregiving for aging elders.
+          </p>
+<ul class="space-y-2.5 text-on-surface font-body-sm text-body-sm mt-auto pt-space-sm border-t border-surface-container-high">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+<span>Mid-day decompression exercises</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+<span>Caregiver support circle check-ins</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+<span>Late-night conversational unloading</span>
+</li>
+</ul>
+</div>
+<!-- Caregivers & Elders Column -->
+<div class="bg-surface-container-lowest rounded-3xl p-space-lg border border-outline-variant/40 shadow-sm flex flex-col">
+<div class="flex items-center gap-2 mb-space-sm">
+<span class="px-3 py-1 rounded-full bg-tertiary-fixed/60 text-tertiary font-label-sm text-label-sm font-semibold">Ages 55–70+</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-secondary mb-space-sm">Caregivers & Elders</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-md">
+            Empty-nest loneliness, health-related worries, sleep disturbances, reminiscing, and staying peacefully engaged.
+          </p>
+<ul class="space-y-2.5 text-on-surface font-body-sm text-body-sm mt-auto pt-space-sm border-t border-surface-container-high">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+<span>High contrast, large font sizes</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+<span>Voice-assisted friendly conversations</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+<span>Calming nostalgic audio reflections</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- HOW IT WORKS SECTION -->
+<section class="py-space-xl bg-surface-container-low/60" id="how-it-works-section">
+<div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin-tablet lg:px-margin">
+<div class="max-w-2xl mx-auto text-center mb-space-xl">
+<span class="font-label-md text-label-md uppercase tracking-wider text-secondary font-semibold block mb-space-xs">Simple & Seamless</span>
+<h2 class="font-headline-lg text-headline-lg text-secondary">
+          How SAHARA works for you
+        </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-2">
+          Getting started takes under two minutes. No intrusive profile permissions or overwhelming questionnaires.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter relative">
+<!-- Connecting Line for Tablet/Desktop -->
+<div class="hidden md:block absolute top-10 left-[16%] right-[16%] h-0.5 bg-outline-variant/50 -z-0"></div>
+<!-- Step 1 -->
+<div class="relative z-10 flex flex-col items-center text-center">
+<div class="w-20 h-20 rounded-full bg-surface-container-lowest border-2 border-secondary text-secondary font-display-lg text-headline-md flex items-center justify-center mb-space-md shadow-sm">
+            1
+          </div>
+<h3 class="font-headline-sm text-headline-sm text-secondary mb-space-xs">Create your anonymous profile</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xs">
+            Sign up privately without linking phone contacts, social media, or mandatory real names.
+          </p>
+</div>
+<!-- Step 2 -->
+<div class="relative z-10 flex flex-col items-center text-center">
+<div class="w-20 h-20 rounded-full bg-surface-container-lowest border-2 border-primary text-primary font-display-lg text-headline-md flex items-center justify-center mb-space-md shadow-sm">
+            2
+          </div>
+<h3 class="font-headline-sm text-headline-sm text-secondary mb-space-xs">Check in & explore calm tools</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xs">
+            Tap your mood, take a 2-minute breathwork break, or jot down thoughts in your encrypted diary.
+          </p>
+</div>
+<!-- Step 3 -->
+<div class="relative z-10 flex flex-col items-center text-center">
+<div class="w-20 h-20 rounded-full bg-surface-container-lowest border-2 border-tertiary text-tertiary font-display-lg text-headline-md flex items-center justify-center mb-space-md shadow-sm">
+            3
+          </div>
+<h3 class="font-headline-sm text-headline-sm text-secondary mb-space-xs">Talk to Mitra or book support</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xs">
+            Unburden your mind with Mitra anytime, or schedule a session with a licensed Indian counsellor.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- PRIVACY SANCTUARY SECTION (Prominent Soft Teal Container) -->
+<section class="py-space-xl px-margin-mobile md:px-margin-tablet lg:px-margin">
+<div class="max-w-[1200px] mx-auto rounded-3xl bg-secondary text-on-secondary p-space-lg md:p-space-xl lg:p-16 shadow-[0_24px_48px_-8px_rgba(31,45,61,0.14)] relative overflow-hidden">
+<!-- Decorative Backdrop Circles -->
+<div class="absolute -right-20 -bottom-20 w-80 h-80 rounded-full bg-surface-tint/20 blur-2xl pointer-events-none"></div>
+<div class="max-w-3xl relative z-10 flex flex-col gap-space-md">
+<!-- DPDP Compliance Badge -->
+<div class="inline-flex items-center gap-2 px-space-md py-1.5 rounded-full bg-surface-container-lowest/15 backdrop-blur-md text-secondary-container font-label-md text-label-md w-fit">
+<span class="material-symbols-outlined text-base">verified_user</span>
+<span>Compliant with India's Digital Personal Data Protection Act, 2023 (DPDP)</span>
+</div>
+<h2 class="font-display-lg text-display-lg text-on-secondary leading-tight">
+          Your mind is your own.<br/>Uncompromising privacy by design.
+        </h2>
+<p class="font-body-lg text-body-lg text-secondary-container/90 leading-relaxed">
+          Your thoughts, voice notes, and mood logs are strictly encrypted. Not even counsellors or family members can see your personal sanctuary without your explicit, deliberate consent.
+        </p>
+<!-- Trust Pillars Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-gutter pt-space-sm border-t border-surface-container-lowest/20">
+<div>
+<div class="font-headline-sm text-headline-sm text-on-secondary mb-1">Zero Ads</div>
+<p class="font-body-sm text-body-sm text-secondary-container/80">No behavioral targeting, commercial banners, or third-party ad networks.</p>
+</div>
+<div>
+<div class="font-headline-sm text-headline-sm text-on-secondary mb-1">Never Sold</div>
+<p class="font-body-sm text-body-sm text-secondary-container/80">Your sensitive emotional wellbeing data is never monetized or traded.</p>
+</div>
+<div>
+<div class="font-headline-sm text-headline-sm text-on-secondary mb-1">Instant Delete</div>
+<p class="font-body-sm text-body-sm text-secondary-container/80">Self-serve instant erasure of all your chat logs and records at any second.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- EARLY ACCESS SIGN-UP SECTION -->
+<section class="py-space-xl bg-surface" id="early-access-form">
+<div class="max-w-[760px] mx-auto px-margin-mobile md:px-margin-tablet">
+<div class="bg-surface-container-lowest rounded-3xl p-space-lg md:p-space-xl border border-outline-variant/40 shadow-[0_12px_32px_-4px_rgba(46,111,120,0.06)]">
+<div class="text-center mb-space-lg">
+<span class="font-label-md text-label-md uppercase tracking-wider text-tertiary font-semibold block mb-space-xs">Welcome to Early Sanctuary</span>
+<h2 class="font-headline-lg text-headline-lg text-secondary">
+            Be among the first to feel supported.
+          </h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">
+            Join thousands of Indian families discovering a calmer, more mindful rhythm.
+          </p>
+</div>
+<form class="flex flex-col gap-space-md" id="waitlist-form" onsubmit="event.preventDefault(); document.getElementById('form-success').classList.remove('hidden'); this.classList.add('hidden');">
+<!-- Full Name -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-lg text-label-lg text-on-surface" for="fullName">Full Name</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-xl px-4 py-3 text-on-surface font-body-md text-body-md focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all" id="fullName" placeholder="e.g., Aarav Sharma or Ananya" required="" type="text"/>
+</div>
+<!-- Email Address -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-lg text-label-lg text-on-surface" for="email">Email Address</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-xl px-4 py-3 text-on-surface font-body-md text-body-md focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all" id="email" placeholder="you@family.com" required="" type="email"/>
+</div>
+<!-- Select Option -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-lg text-label-lg text-on-surface" for="role">I'm signing up for:</label>
+<select class="w-full bg-surface-container-lowest border border-outline-variant rounded-xl px-4 py-3 text-on-surface font-body-md text-body-md focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all" id="role">
+<option value="myself">Myself</option>
+<option value="family">A family member</option>
+<option value="teenager">A teenager (13–19)</option>
+<option value="elder">An older adult / parent (60+)</option>
+</select>
+</div>
+<!-- Submit Button -->
+<button class="mt-space-xs w-full bg-tertiary text-on-tertiary hover:bg-tertiary-container hover:text-on-tertiary-container transition-all duration-200 rounded-full py-3.5 font-label-lg text-label-lg shadow-[0_8px_24px_rgba(154,68,45,0.22)]" type="submit">
+            Join early access
+          </button>
+<!-- Reassurance Note -->
+<p class="text-center font-body-sm text-body-sm text-on-surface-variant">
+            🔒 We'll only contact you about your early access. No spam, ever. Your privacy is protected.
+          </p>
+</form>
+<!-- Success Message Placeholder -->
+<div class="hidden text-center py-space-lg flex-col items-center gap-space-sm" id="form-success">
+<div class="w-16 h-16 rounded-full bg-primary-fixed flex items-center justify-center text-primary mx-auto mb-space-sm">
+<span class="material-symbols-outlined text-3xl">check_circle</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-secondary">You're on the early access list!</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md mx-auto">
+            Thank you for trusting SAHARA. We will send an invitation to your email inbox shortly. Welcome to the sanctuary.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- TEAM SECTION (Two Founders) -->
+<section class="py-space-xl bg-surface-container-low/40">
+<div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin-tablet lg:px-margin">
+<div class="max-w-2xl mx-auto text-center mb-space-xl">
+<span class="font-label-md text-label-md uppercase tracking-wider text-secondary font-semibold block mb-space-xs">Our Commitment</span>
+<h2 class="font-headline-lg text-headline-lg text-secondary">
+          Crafted with empathy for Indian families
+        </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-2">
+          Rooted in a shared belief that mental peace must be safe, confidential, and culturally gentle.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter max-w-3xl mx-auto">
+<!-- Founder 1 -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-lg border border-outline-variant/40 shadow-sm flex flex-col items-center text-center">
+<div class="w-24 h-24 rounded-full bg-primary-container/30 border-2 border-primary-container flex items-center justify-center mb-space-sm text-primary">
+<span class="material-symbols-outlined text-4xl">person</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-secondary font-semibold">Shrijal Tiwari</h3>
+<span class="font-label-md text-label-md text-primary font-medium mb-space-sm">Founder</span>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            Focused on democratizing accessible, stigma-free mental health support across Bharat, bridging deep cultural empathy with intuitive mobile accessibility.
+          </p>
+</div>
+<!-- Founder 2 -->
+<div class="bg-surface-container-lowest rounded-2xl p-space-lg border border-outline-variant/40 shadow-sm flex flex-col items-center text-center">
+<div class="w-24 h-24 rounded-full bg-secondary-container/30 border-2 border-secondary-container flex items-center justify-center mb-space-sm text-secondary">
+<span class="material-symbols-outlined text-4xl">person_3</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-secondary font-semibold">Janvi Vaidya</h3>
+<span class="font-label-md text-label-md text-secondary font-medium mb-space-sm">Co-founder</span>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            Dedicated to empathetic product design, family wellness psychology, and establishing uncompromising privacy architectures for multi-generational homes.
+          </p>
+</div>
+</div>
+</div>
+</section>
+</div></main><footer class="w-full bg-surface-container-low text-on-surface py-space-xl"><div class="max-w-[1200px] mx-auto px-margin-mobile md:px-margin-tablet lg:px-margin flex flex-col gap-space-lg"><div class="p-space-md rounded-lg bg-surface-container border border-outline-variant/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-sm shadow-[0_4px_20px_-2px_rgba(31,45,61,0.04)]"><div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-tertiary text-headline-sm">health_and_safety</span><div><span class="font-label-sm text-label-sm uppercase tracking-wide text-tertiary font-bold block">Immediate Care & Support</span><p class="font-body-sm text-body-sm text-on-surface">If you're in crisis, please reach out to <strong class="font-semibold text-tertiary">Tele-MANAS 14416</strong> or call <strong class="font-semibold text-tertiary">112</strong> immediately.</p></div></div><a class="inline-flex items-center gap-space-xs bg-tertiary text-on-tertiary px-space-md py-space-xs rounded-full font-label-md text-label-md hover:bg-tertiary-container hover:text-on-tertiary-container transition-colors" href="tel:14416"><span class="material-symbols-outlined text-label-md">call</span>Call 14416</a></div><div class="grid grid-cols-1 md:grid-cols-12 gap-gutter pt-space-md"><div class="md:col-span-6 flex flex-col gap-space-sm"><div class="flex items-center gap-space-sm"><img alt="SAHARA Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1U2I7xDnGWBpGBsZ4FKX9xeSIczoD6Jior3fBTdmmKknCdjeEUV-VXo5PZ_qhbB-hRmO_x6Mu209jKlPUNk0CsSP0gS4fK3bQ_XvpASUMSM95fhX4iBjK3aaTiXLwwD1waimugxB8iQ-G-3uobrNxQ9qfBAkulx6kqzoIvdUNaQQl23JTov8MMOHks_E8gd0mcr2ZMoEgxljSQhnstTzSYdPEouvN325xuXU-Gzy0Em5LrmkWgq8UMd_Kv2"/><span class="font-title-lg text-title-lg text-primary font-semibold">SAHARA</span></div><p class="font-body-md text-body-md text-on-surface-variant max-w-md">A calm, private sanctuary for your mind, for every generation in your family.</p><p class="font-title-lg text-title-lg text-secondary font-medium italic">जब कोई नहीं, तब सहारा</p></div><div class="md:col-span-6 flex flex-col md:items-end justify-between gap-space-md"><div class="flex flex-wrap gap-x-space-md gap-y-space-xs md:justify-end"><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="privacy-policy" href="#">Privacy Policy</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="terms-of-service" href="#">Terms of Service</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="dpdp-compliance" href="#">DPDP Act 2023 Compliance</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="contact" href="#">Contact</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="community-guidelines" href="#">Community Guidelines</a></div><div class="text-on-surface-variant font-label-sm text-label-sm md:text-right">© 2025 SAHARA Mental Wellness. Made with care for Indian families.</div></div></div></div></footer></body></html>

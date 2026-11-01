@@ -1,0 +1,19 @@
+{
+  "name": "SAHARA — Mental Wellness Support Platform",
+  "short_name": "SAHARA",
+  "description": "India's first all-generation mental wellness companion. जब कोई नहीं, तब सहारा.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A1628",
+  "theme_color": "#0A1628",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/sahara-logo.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}
+
