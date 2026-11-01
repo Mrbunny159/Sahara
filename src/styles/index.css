@@ -822,24 +822,24 @@ h1, h2, h3, h4 {
   width: 290px;
   height: 290px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(42, 157, 143, 0.35), transparent 70%);
-  transition: transform 4s ease-in-out, background 1.2s ease, opacity 1s ease;
+  background: radial-gradient(circle, rgba(20, 184, 166, 0.45), transparent 70%);
+  transition: transform 4s ease-in-out, background 3.5s ease-in-out, opacity 2s ease;
 }
 
 .ring-circle {
   width: 210px;
   height: 210px;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #D9F2EC, #2A9D8F 70%, #1E7A70);
-  box-shadow: 0 20px 50px -12px rgba(42, 157, 143, 0.6);
+  background: radial-gradient(circle at 35% 30%, #5EEAD4, #14B8A6 60%, #0F766E 100%);
+  box-shadow: 0 20px 60px -10px rgba(20, 184, 166, 0.7);
   display: grid;
   place-items: center;
-  transition: transform 4s ease-in-out, background 1.2s ease, box-shadow 1.2s ease;
+  transition: transform 4s ease-in-out, background 3.5s ease-in-out, box-shadow 3.5s ease-in-out;
   color: #fff;
   font-family: var(--serif);
   font-size: 24px;
   font-weight: 600;
-  text-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  text-shadow: 0 2px 8px rgba(0,0,0,0.25);
 }
 
 .seg-nav {

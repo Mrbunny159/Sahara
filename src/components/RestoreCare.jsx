@@ -2,240 +2,62 @@ import React, { useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
 import {
   PhoneCall, ShieldCheck, Wind, Users2, Calendar, Clock,
-  Video, MessageSquare, Check, X, Star, Palette, Sparkles
+  Video, MessageSquare, Check, X, Star, Sparkles
 } from 'lucide-react';
 import { SyncService } from '../lib/syncService';
 import { useAuth } from '../context/AuthContext';
 
-// Color themes for guided breathing sessions
-export const BREATHING_THEMES = [
+// 4 Distinct Colors specifically transitioning for each phase of the breath:
+// 1. Breathe In -> Fresh Revitalizing Teal
+// 2. Hold       -> Radiant Golden Amber
+// 3. Breathe Out -> Warm Sunset Coral
+// 4. Rest       -> Serene Twilight Violet
+const BREATH_PHASES = [
   {
-    id: 'dynamic',
-    name: 'Dynamic Flow',
-    description: 'Shifts color on each phase of the breath',
-    dot: 'linear-gradient(135deg, #2A9D8F 0%, #F4A261 40%, #E76F51 70%, #8E7CC3 100%)',
-    confettiColors: ['#2A9D8F', '#F4A261', '#E76F51', '#8E7CC3'],
-    phases: {
-      in: {
-        ring: 'radial-gradient(circle at 35% 30%, #E0F7F6, #2A9D8F 70%, #16655D)',
-        halo: 'radial-gradient(circle, rgba(42, 157, 143, 0.45), transparent 70%)',
-        shadow: '0 20px 50px -10px rgba(42, 157, 143, 0.65)',
-        accent: '#2A9D8F',
-        sub: 'Inhale slowly and fill your lungs with fresh air · 4s'
-      },
-      hold: {
-        ring: 'radial-gradient(circle at 35% 30%, #FEF3C7, #F4A261 70%, #D97706)',
-        halo: 'radial-gradient(circle, rgba(244, 162, 97, 0.45), transparent 70%)',
-        shadow: '0 20px 50px -10px rgba(244, 162, 97, 0.65)',
-        accent: '#F4A261',
-        sub: 'Hold gently and savor the stillness · 4s'
-      },
-      out: {
-        ring: 'radial-gradient(circle at 35% 30%, #FFE4E6, #E76F51 70%, #BE123C)',
-        halo: 'radial-gradient(circle, rgba(231, 111, 81, 0.45), transparent 70%)',
-        shadow: '0 20px 50px -10px rgba(231, 111, 81, 0.65)',
-        accent: '#E76F51',
-        sub: 'Exhale completely, releasing all tension · 4s'
-      },
-      rest: {
-        ring: 'radial-gradient(circle at 35% 30%, #EDE9FE, #8E7CC3 70%, #6D28D9)',
-        halo: 'radial-gradient(circle, rgba(142, 124, 195, 0.45), transparent 70%)',
-        shadow: '0 20px 50px -10px rgba(142, 124, 195, 0.65)',
-        accent: '#8E7CC3',
-        sub: 'Rest softly and let your nervous system reset · 4s'
-      }
-    }
+    key: 'in',
+    title: 'Breathe In',
+    sub: 'Inhale slowly and fill your lungs · 4s',
+    scale: 1,
+    accent: '#0D9488',
+    bgBadge: '#CCFBF1',
+    ring: 'radial-gradient(circle at 35% 30%, #5EEAD4, #14B8A6 60%, #0F766E 100%)',
+    halo: 'radial-gradient(circle, rgba(20, 184, 166, 0.5), transparent 70%)',
+    shadow: '0 20px 60px -10px rgba(20, 184, 166, 0.75)'
   },
   {
-    id: 'oasis',
-    name: 'Oasis Teal',
-    description: 'Calm, centering & clarity',
-    dot: '#2A9D8F',
-    confettiColors: ['#2A9D8F', '#56C2B4', '#1E7A70', '#8FB9A8'],
-    phases: {
-      in: {
-        ring: 'radial-gradient(circle at 35% 30%, #D1FAE5, #2A9D8F 70%, #065F46)',
-        halo: 'radial-gradient(circle, rgba(42, 157, 143, 0.45), transparent 70%)',
-        shadow: '0 20px 50px -10px rgba(42, 157, 143, 0.65)',
-        accent: '#2A9D8F',
-        sub: 'Inhale healing oxygen and clarity · 4s'
-      },
-      hold: {
-        ring: 'radial-gradient(circle at 35% 30%, #A7F3D0, #10B981 70%, #047857)',
-        halo: 'radial-gradient(circle, rgba(16, 185, 129, 0.45), transparent 70%)',
-        shadow: '0 20px 50px -10px rgba(16, 185, 129, 0.6)',
-        accent: '#10B981',
-        sub: 'Hold gently in tranquil presence · 4s'
-      },
-      out: {
-        ring: 'radial-gradient(circle at 35% 30%, #E6FFFA, #14B8A6 70%, #0F766E)',
-        halo: 'radial-gradient(circle, rgba(20, 184, 166, 0.45), transparent 70%)',
-        shadow: '0 20px 50px -10px rgba(20, 184, 166, 0.6)',
-        accent: '#14B8A6',
-        sub: 'Exhale tension into calm water · 4s'
-      },
-      rest: {
-        ring: 'radial-gradient(circle at 35% 30%, #CCFBF1, #0D9488 70%, #115E59)',
-        halo: 'radial-gradient(circle, rgba(13, 148, 136, 0.4), transparent 70%)',
-        shadow: '0 20px 50px -10px rgba(13, 148, 136, 0.6)',
-        accent: '#0D9488',
-        sub: 'Rest in quiet, centered balance · 4s'
-      }
-    }
+    key: 'hold',
+    title: 'Hold',
+    sub: 'Hold your breath gently and softly · 4s',
+    scale: 1,
+    accent: '#D97706',
+    bgBadge: '#FEF3C7',
+    ring: 'radial-gradient(circle at 35% 30%, #FDE047, #F59E0B 60%, #B45309 100%)',
+    halo: 'radial-gradient(circle, rgba(245, 158, 11, 0.5), transparent 70%)',
+    shadow: '0 20px 60px -10px rgba(245, 158, 11, 0.75)'
   },
   {
-    id: 'sunset',
-    name: 'Desert Sunset',
-    description: 'Warmth, courage & comfort',
-    dot: '#E76F51',
-    confettiColors: ['#E76F51', '#F4A261', '#FB923C', '#C2410C'],
-    phases: {
-      in: {
-        ring: 'radial-gradient(circle at 35% 30%, #FFEDD5, #FB923C 70%, #C2410C)',
-        halo: 'radial-gradient(circle, rgba(251, 146, 60, 0.45), transparent 70%)',
-        shadow: '0 20px 50px -10px rgba(251, 146, 60, 0.65)',
-        accent: '#FB923C',
-        sub: 'Breathe in gentle sunset warmth · 4s'
-      },
-      hold: {
-        ring: 'radial-gradient(circle at 35% 30%, #FEE2E2, #F87171 70%, #B91C1C)',
-        halo: 'radial-gradient(circle, rgba(248, 113, 113, 0.45), transparent 70%)',
-        shadow: '0 20px 50px -10px rgba(248, 113, 113, 0.65)',
-        accent: '#F87171',
-        sub: 'Hold warmth deep in your chest · 4s'
-      },
-      out: {
-        ring: 'radial-gradient(circle at 35% 30%, #FFE4E6, #E76F51 70%, #991B1B)',
-        halo: 'radial-gradient(circle, rgba(231, 111, 81, 0.45), transparent 70%)',
-        shadow: '0 20px 50px -10px rgba(231, 111, 81, 0.65)',
-        accent: '#E76F51',
-        sub: 'Exhale worries like warm sand · 4s'
-      },
-      rest: {
-        ring: 'radial-gradient(circle at 35% 30%, #FFF7ED, #EA580C 70%, #7C2D12)',
-        halo: 'radial-gradient(circle, rgba(234, 88, 12, 0.4), transparent 70%)',
-        shadow: '0 20px 50px -10px rgba(234, 88, 12, 0.6)',
-        accent: '#EA580C',
-        sub: 'Rest safely under the desert twilight · 4s'
-      }
-    }
+    key: 'out',
+    title: 'Breathe Out',
+    sub: 'Exhale completely, releasing all tension · 4s',
+    scale: 0.62,
+    accent: '#E76F51',
+    bgBadge: '#FFE4E6',
+    ring: 'radial-gradient(circle at 35% 30%, #FF8A65, #E76F51 60%, #C0392B 100%)',
+    halo: 'radial-gradient(circle, rgba(231, 111, 81, 0.5), transparent 70%)',
+    shadow: '0 20px 60px -10px rgba(231, 111, 81, 0.75)'
   },
   {
-    id: 'lavender',
-    name: 'Twilight Lavender',
-    description: 'Anxiety relief & deep sleep',
-    dot: '#8E7CC3',
-    confettiColors: ['#8E7CC3', '#A78BFA', '#D88BB0', '#7C3AED'],
-    phases: {
-      in: {
-        ring: 'radial-gradient(circle at 35% 30%, #F5F3FF, #A78BFA 70%, #5B21B6)',
-        halo: 'radial-gradient(circle, rgba(167, 139, 250, 0.45), transparent 70%)',
-        shadow: '0 20px 50px -10px rgba(167, 139, 250, 0.65)',
-        accent: '#A78BFA',
-        sub: 'Inhale soft evening quiet · 4s'
-      },
-      hold: {
-        ring: 'radial-gradient(circle at 35% 30%, #EDE9FE, #8E7CC3 70%, #4C1D95)',
-        halo: 'radial-gradient(circle, rgba(142, 124, 195, 0.45), transparent 70%)',
-        shadow: '0 20px 50px -10px rgba(142, 124, 195, 0.65)',
-        accent: '#8E7CC3',
-        sub: 'Hold and let thoughts soften · 4s'
-      },
-      out: {
-        ring: 'radial-gradient(circle at 35% 30%, #FCE7F3, #F472B6 70%, #9D174D)',
-        halo: 'radial-gradient(circle, rgba(244, 114, 182, 0.45), transparent 70%)',
-        shadow: '0 20px 50px -10px rgba(244, 114, 182, 0.65)',
-        accent: '#F472B6',
-        sub: 'Exhale and release the heavy day · 4s'
-      },
-      rest: {
-        ring: 'radial-gradient(circle at 35% 30%, #F3E8FF, #7C3AED 70%, #3B0764)',
-        halo: 'radial-gradient(circle, rgba(124, 58, 237, 0.4), transparent 70%)',
-        shadow: '0 20px 50px -10px rgba(124, 58, 237, 0.6)',
-        accent: '#7C3AED',
-        sub: 'Drift peacefully into restful calm · 4s'
-      }
-    }
-  },
-  {
-    id: 'golden',
-    name: 'Golden Dawn',
-    description: 'Vitality, optimism & morning start',
-    dot: '#F59E0B',
-    confettiColors: ['#F59E0B', '#FBBF24', '#F4A261', '#D97706'],
-    phases: {
-      in: {
-        ring: 'radial-gradient(circle at 35% 30%, #FEF9C3, #FBBF24 70%, #B45309)',
-        halo: 'radial-gradient(circle, rgba(251, 191, 36, 0.45), transparent 70%)',
-        shadow: '0 20px 50px -10px rgba(251, 191, 36, 0.65)',
-        accent: '#FBBF24',
-        sub: 'Inhale morning vitality and hope · 4s'
-      },
-      hold: {
-        ring: 'radial-gradient(circle at 35% 30%, #FEF3C7, #F59E0B 70%, #92400E)',
-        halo: 'radial-gradient(circle, rgba(245, 158, 11, 0.45), transparent 70%)',
-        shadow: '0 20px 50px -10px rgba(245, 158, 11, 0.65)',
-        accent: '#F59E0B',
-        sub: 'Hold clarity and inner optimism · 4s'
-      },
-      out: {
-        ring: 'radial-gradient(circle at 35% 30%, #FFEDD5, #FB923C 70%, #9A3412)',
-        halo: 'radial-gradient(circle, rgba(251, 146, 60, 0.45), transparent 70%)',
-        shadow: '0 20px 50px -10px rgba(251, 146, 60, 0.65)',
-        accent: '#FB923C',
-        sub: 'Exhale doubt and lethargy · 4s'
-      },
-      rest: {
-        ring: 'radial-gradient(circle at 35% 30%, #FFFBEB, #D97706 70%, #78350F)',
-        halo: 'radial-gradient(circle, rgba(217, 119, 6, 0.4), transparent 70%)',
-        shadow: '0 20px 50px -10px rgba(217, 119, 6, 0.6)',
-        accent: '#D97706',
-        sub: 'Ready for a bright, purposeful day · 4s'
-      }
-    }
-  },
-  {
-    id: 'ocean',
-    name: 'Deep Ocean',
-    description: 'Immense stillness & quiet mind',
-    dot: '#3B82F6',
-    confettiColors: ['#3B82F6', '#60A5FA', '#1D4ED8', '#6EE7B7'],
-    phases: {
-      in: {
-        ring: 'radial-gradient(circle at 35% 30%, #EFF6FF, #60A5FA 70%, #1E40AF)',
-        halo: 'radial-gradient(circle, rgba(96, 165, 250, 0.45), transparent 70%)',
-        shadow: '0 20px 50px -10px rgba(96, 165, 250, 0.65)',
-        accent: '#3B82F6',
-        sub: 'Inhale deep ocean stillness · 4s'
-      },
-      hold: {
-        ring: 'radial-gradient(circle at 35% 30%, #DBEAFE, #3B82F6 70%, #1D4ED8)',
-        halo: 'radial-gradient(circle, rgba(59, 130, 246, 0.45), transparent 70%)',
-        shadow: '0 20px 50px -10px rgba(59, 130, 246, 0.65)',
-        accent: '#1D4ED8',
-        sub: 'Hold and feel weightless · 4s'
-      },
-      out: {
-        ring: 'radial-gradient(circle at 35% 30%, #E0F2FE, #0284C7 70%, #0369A1)',
-        halo: 'radial-gradient(circle, rgba(2, 132, 199, 0.45), transparent 70%)',
-        shadow: '0 20px 50px -10px rgba(2, 132, 199, 0.65)',
-        accent: '#0284C7',
-        sub: 'Exhale like waves washing onto the shore · 4s'
-      },
-      rest: {
-        ring: 'radial-gradient(circle at 35% 30%, #F0F9FF, #0369A1 70%, #0C4A6E)',
-        halo: 'radial-gradient(circle, rgba(3, 105, 161, 0.4), transparent 70%)',
-        shadow: '0 20px 50px -10px rgba(3, 105, 161, 0.6)',
-        accent: '#0369A1',
-        sub: 'Rest in boundless peaceful waters · 4s'
-      }
-    }
+    key: 'rest',
+    title: 'Rest',
+    sub: 'Rest softly and let your nervous system reset · 4s',
+    scale: 0.62,
+    accent: '#7C3AED',
+    bgBadge: '#EDE9FE',
+    ring: 'radial-gradient(circle at 35% 30%, #C4B5FD, #8B5CF6 60%, #5B21B6 100%)',
+    halo: 'radial-gradient(circle, rgba(139, 92, 246, 0.5), transparent 70%)',
+    shadow: '0 20px 60px -10px rgba(139, 92, 246, 0.75)'
   }
 ];
-
-const PHASE_KEYS = ['in', 'hold', 'out', 'rest'];
-const PHASE_TITLES = ['Breathe In', 'Hold', 'Breathe Out', 'Rest'];
-const PHASE_SCALES = [1, 1, 0.62, 0.62];
 
 const COUNSELLORS = [
   {
@@ -284,15 +106,6 @@ export default function RestoreCare({
   const { user } = useAuth();
   const [activeTab, setActiveTab] = useState('breathe'); // 'breathe' | 'counsellors'
 
-  // Selected Color Theme (defaults to dynamic flow)
-  const [selectedThemeId, setSelectedThemeId] = useState(() => {
-    try {
-      return localStorage.getItem('sahara_breathing_theme') || 'dynamic';
-    } catch {
-      return 'dynamic';
-    }
-  });
-
   // Breathing state
   const [isBreathing, setIsBreathing] = useState(false);
   const [phaseIndex, setPhaseIndex] = useState(0);
@@ -303,15 +116,6 @@ export default function RestoreCare({
   const [bookingDate, setBookingDate] = useState('');
   const [bookingTime, setBookingTime] = useState('10:00 AM');
   const [bookingType, setBookingType] = useState('Video');
-
-  const currentTheme = BREATHING_THEMES.find(t => t.id === selectedThemeId) || BREATHING_THEMES[0];
-
-  const handleSelectTheme = (themeId) => {
-    setSelectedThemeId(themeId);
-    try {
-      localStorage.setItem('sahara_breathing_theme', themeId);
-    } catch (e) {}
-  };
 
   useEffect(() => {
     let timer = null;
@@ -357,7 +161,7 @@ export default function RestoreCare({
           particleCount: 60,
           spread: 70,
           origin: { y: 0.7 },
-          colors: currentTheme.confettiColors
+          colors: ['#14B8A6', '#F59E0B', '#E76F51', '#8B5CF6']
         });
       } catch (e) {}
       onShowToast('Session complete! Great work centering your mind 🌿');
@@ -389,11 +193,9 @@ export default function RestoreCare({
     onShowToast(`Consultation booked with ${selectedCounsellor.name} 🌿`);
   };
 
-  // Determine current active phase visuals
-  const activePhaseKey = PHASE_KEYS[phaseIndex];
-  const activePhaseData = currentTheme.phases[activePhaseKey];
-  const activeTitle = PHASE_TITLES[phaseIndex];
-  const activeScale = isBreathing ? PHASE_SCALES[phaseIndex] : 1;
+  // Current active phase data (auto-transitioning every 4s)
+  const currentPhase = BREATH_PHASES[phaseIndex];
+  const activeScale = isBreathing ? currentPhase.scale : 1;
 
   return (
     <div>
@@ -422,7 +224,7 @@ export default function RestoreCare({
       <div style={{ marginBottom: '22px' }}>
         <h1 style={{ fontSize: '32px', color: 'var(--navy)' }}>Restore & Connect</h1>
         <div className="muted" style={{ fontSize: '15px', marginTop: '4px' }}>
-          Calming guided box breathing, or confidential time with verified counsellors.
+          Calming guided box breathing with phase color transitions, or confidential time with verified counsellors.
         </div>
       </div>
 
@@ -446,104 +248,66 @@ export default function RestoreCare({
       {activeTab === 'breathe' && (
         <div className="grid g-main">
           {/* Animated Circle Visualizer */}
-          <div className="card" style={{ padding: '34px 28px', textAlign: 'center' }}>
-
-            {/* COLOR THEME SELECTOR */}
-            <div style={{ marginBottom: '24px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', fontSize: '13px', fontWeight: 600, color: 'var(--muted)', marginBottom: '10px' }}>
-                <Palette size={15} style={{ color: activePhaseData.accent }} />
-                <span>Choose Session Color Theme</span>
-              </div>
-
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', justifyContent: 'center' }}>
-                {BREATHING_THEMES.map((theme) => {
-                  const isSelected = theme.id === selectedThemeId;
-                  return (
-                    <button
-                      key={theme.id}
-                      type="button"
-                      onClick={() => handleSelectTheme(theme.id)}
-                      style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '8px',
-                        padding: '6px 14px',
-                        borderRadius: '999px',
-                        border: isSelected ? `2px solid ${theme.phases.in.accent}` : '1px solid var(--line)',
-                        background: isSelected ? '#fff' : 'rgba(255,255,255,0.6)',
-                        boxShadow: isSelected ? `0 4px 14px -2px ${theme.phases.in.accent}40` : 'none',
-                        fontSize: '12.5px',
-                        fontWeight: isSelected ? 700 : 500,
-                        color: isSelected ? 'var(--navy)' : 'var(--muted)',
-                        transition: 'all 0.2s ease',
-                        cursor: 'pointer'
-                      }}
-                    >
-                      <span
-                        style={{
-                          width: '12px',
-                          height: '12px',
-                          borderRadius: '50%',
-                          background: theme.dot,
-                          display: 'inline-block',
-                          boxShadow: '0 1px 3px rgba(0,0,0,0.15)'
-                        }}
-                      />
-                      <span>{theme.name}</span>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
+          <div className="card" style={{ padding: '38px 28px', textAlign: 'center' }}>
 
             {/* Visualizer Area */}
             <div className="breath-wrap">
+              {/* Outer Glowing Halo - Transitions color and scale per phase */}
               <div
                 className="halo-circle"
                 style={{
                   transform: `scale(${activeScale * 1.15})`,
-                  background: activePhaseData.halo,
-                  transition: 'transform 4s ease-in-out, background 1.2s ease'
+                  background: isBreathing ? currentPhase.halo : BREATH_PHASES[0].halo
                 }}
               />
+
+              {/* Inner Solid Ring - Transitions color, shadow, and scale per phase */}
               <div
                 className="ring-circle"
                 style={{
                   transform: `scale(${activeScale})`,
-                  background: isBreathing ? activePhaseData.ring : currentTheme.phases.in.ring,
-                  boxShadow: isBreathing ? activePhaseData.shadow : currentTheme.phases.in.shadow,
-                  transition: 'transform 4s ease-in-out, background 1.2s ease, box-shadow 1.2s ease'
+                  background: isBreathing ? currentPhase.ring : BREATH_PHASES[0].ring,
+                  boxShadow: isBreathing ? currentPhase.shadow : BREATH_PHASES[0].shadow
                 }}
               >
-                {isBreathing ? activeTitle : 'Ready'}
+                {isBreathing ? currentPhase.title : 'Ready'}
               </div>
             </div>
 
-            {/* Active Phase Indicators */}
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', marginTop: '16px' }}>
-              {PHASE_TITLES.map((title, idx) => {
+            {/* 4-PHASE COLOR TRANSITION STEP INDICATORS */}
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', marginTop: '22px', flexWrap: 'wrap' }}>
+              {BREATH_PHASES.map((p, idx) => {
                 const isActive = isBreathing && phaseIndex === idx;
-                const phaseKey = PHASE_KEYS[idx];
-                const phaseColor = currentTheme.phases[phaseKey].accent;
                 return (
                   <div
-                    key={idx}
+                    key={p.key}
                     style={{
                       display: 'flex',
                       alignItems: 'center',
-                      gap: '4px',
-                      padding: '4px 10px',
+                      gap: '6px',
+                      padding: '6px 14px',
                       borderRadius: '999px',
-                      fontSize: '11px',
+                      fontSize: '12px',
                       fontWeight: 600,
-                      background: isActive ? `${phaseColor}20` : 'rgba(0,0,0,0.03)',
-                      color: isActive ? phaseColor : 'var(--muted)',
-                      border: isActive ? `1.5px solid ${phaseColor}` : '1px solid transparent',
-                      transition: 'all 0.3s ease'
+                      background: isActive ? p.bgBadge : 'rgba(0,0,0,0.03)',
+                      color: isActive ? p.accent : 'var(--muted)',
+                      border: isActive ? `2px solid ${p.accent}` : '1px solid transparent',
+                      boxShadow: isActive ? `0 4px 14px ${p.accent}40` : 'none',
+                      transform: isActive ? 'scale(1.05)' : 'scale(1)',
+                      transition: 'all 0.5s ease'
                     }}
                   >
-                    <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: isActive ? phaseColor : '#A0AEC0' }}></span>
-                    <span>{title}</span>
+                    <span
+                      style={{
+                        width: '8px',
+                        height: '8px',
+                        borderRadius: '50%',
+                        background: p.accent,
+                        boxShadow: isActive ? `0 0 8px ${p.accent}` : 'none',
+                        transition: 'box-shadow 0.5s ease'
+                      }}
+                    />
+                    <span>{p.title}</span>
                   </div>
                 );
               })}
@@ -553,16 +317,24 @@ export default function RestoreCare({
             <div
               style={{
                 fontFamily: 'var(--serif)',
-                fontSize: '22px',
-                marginTop: '14px',
-                color: isBreathing ? activePhaseData.accent : 'var(--navy)',
+                fontSize: '24px',
+                marginTop: '18px',
+                color: isBreathing ? currentPhase.accent : 'var(--navy)',
                 transition: 'color 1s ease'
               }}
             >
-              {isBreathing ? activeTitle : 'Breathe in as the circle expands'}
+              {isBreathing ? currentPhase.title : 'Breathe in as the circle expands'}
             </div>
-            <div className="muted" style={{ fontSize: '13.5px', margin: '6px 0 24px', minHeight: '20px' }}>
-              {isBreathing ? activePhaseData.sub : 'Box breathing · 4s in, hold, out, hold'}
+
+            <div
+              className="muted"
+              style={{
+                fontSize: '14px',
+                margin: '6px 0 24px',
+                minHeight: '22px'
+              }}
+            >
+              {isBreathing ? currentPhase.sub : 'Box breathing · 4s in (Teal), hold (Gold), out (Coral), rest (Violet)'}
             </div>
 
             <div style={{ maxWidth: '280px', margin: '0 auto' }}>
@@ -570,8 +342,8 @@ export default function RestoreCare({
                 type="button"
                 className={`btn btn-block ${isBreathing ? 'btn-ghost' : 'btn-primary'}`}
                 style={!isBreathing ? {
-                  background: `linear-gradient(135deg, ${activePhaseData.accent}, ${currentTheme.phases.out.accent})`,
-                  boxShadow: `0 10px 22px -10px ${activePhaseData.accent}`
+                  background: 'linear-gradient(135deg, #14B8A6, #E76F51)',
+                  boxShadow: '0 10px 22px -10px #14B8A6'
                 } : {}}
                 onClick={toggleBreathing}
               >
@@ -583,22 +355,48 @@ export default function RestoreCare({
           {/* Details & Counter */}
           <div className="stack">
             <div className="card">
-              <h3>Why Box Breathing Works</h3>
-              <p className="muted" style={{ fontSize: '14.5px', lineHeight: 1.65 }}>
-                Slow, structured breathing activates the vagus nerve and triggers your parasympathetic nervous system. A two-minute session immediately relieves chest tightness, grounds racing thoughts before exams, and eases you into restful sleep.
-              </p>
+              <h3>The 4-Color Rhythm</h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '13.5px', marginTop: '12px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#14B8A6', flexShrink: 0 }} />
+                  <div><strong>1. Breathe In (Teal):</strong> Smoothly expands as oxygen enters the lungs.</div>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#F59E0B', flexShrink: 0 }} />
+                  <div><strong>2. Hold (Gold):</strong> Glows in calm stillness, retaining inner energy.</div>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#E76F51', flexShrink: 0 }} />
+                  <div><strong>3. Breathe Out (Coral):</strong> Softly contracts, releasing physical tension.</div>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#8B5CF6', flexShrink: 0 }} />
+                  <div><strong>4. Rest (Violet):</strong> Resets the nervous system in peaceful recovery.</div>
+                </div>
+              </div>
             </div>
 
             <div
               className="card"
               style={{
-                background: `linear-gradient(135deg, ${activePhaseData.accent}18, ${currentTheme.phases.hold.accent}14)`,
-                border: `1.5px solid ${activePhaseData.accent}30`,
-                transition: 'all 1.2s ease'
+                background: isBreathing ? `${currentPhase.bgBadge}80` : 'rgba(255,255,255,0.7)',
+                border: isBreathing ? `1.5px solid ${currentPhase.accent}50` : '1px solid var(--line)',
+                transition: 'all 1.5s ease'
               }}
             >
-              <div className="eyebrow" style={{ color: activePhaseData.accent }}>Your Calming Practice</div>
-              <div style={{ fontFamily: 'var(--serif)', fontSize: '36px', fontWeight: 700, color: activePhaseData.accent, marginTop: '4px', transition: 'color 1s ease' }}>
+              <div className="eyebrow" style={{ color: isBreathing ? currentPhase.accent : 'var(--teal)', transition: 'color 1s ease' }}>
+                Your Calming Practice
+              </div>
+              <div
+                style={{
+                  fontFamily: 'var(--serif)',
+                  fontSize: '36px',
+                  fontWeight: 700,
+                  color: isBreathing ? currentPhase.accent : 'var(--teal)',
+                  marginTop: '4px',
+                  transition: 'color 1s ease'
+                }}
+              >
                 {breaths}
               </div>
               <div className="muted" style={{ fontSize: '13px', marginTop: '4px' }}>
