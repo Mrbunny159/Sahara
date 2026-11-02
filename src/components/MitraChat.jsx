@@ -133,9 +133,9 @@ export default function MitraChat({ chat, onSendMessage, userName }) {
 
   return (
     <div>
-      <div style={{ marginBottom: '22px' }}>
-        <h1 style={{ fontSize: '32px', color: 'var(--navy)' }}>Talk to Mitra</h1>
-        <div className="muted" style={{ fontSize: '15px', marginTop: '4px' }}>
+      <div style={{ marginBottom: '20px' }}>
+        <h1 style={{ fontSize: 'clamp(24px, 4vw, 32px)', color: 'var(--navy)' }}>Talk to Mitra</h1>
+        <div className="muted" style={{ fontSize: 'clamp(13.5px, 2vw, 15px)', marginTop: '4px' }}>
           A compassionate companion who listens with deep psychological warmth and zero judgment.
         </div>
       </div>

@@ -71,18 +71,27 @@ export default function Dashboard({
   return (
     <div>
       {/* Mobile Brand Top */}
-      <div style={{ display: 'none', alignItems: 'center', gap: '10px', marginBottom: '18px' }} className="mobile-brand">
-        <img
-          src="/sahara-logo.jpg"
-          alt="Sahara"
-          style={{ width: '38px', height: '38px', borderRadius: '50%', objectFit: 'cover' }}
-        />
-        <div>
-          <b style={{ fontFamily: 'var(--serif)', fontSize: '20px', color: 'var(--navy)' }}>SAHARA</b>
-          <small style={{ display: 'block', fontSize: '11px', color: 'var(--coral)', fontFamily: 'var(--script)', marginTop: '-2px' }}>
-            जब कोई नहीं, तब सहारा
-          </small>
+      <div className="mobile-brand" style={{ display: 'none' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <img
+            src="/sahara-logo.jpg"
+            alt="Sahara"
+            style={{ width: '38px', height: '38px', borderRadius: '50%', objectFit: 'cover', border: '1.5px solid #F4A261' }}
+          />
+          <div>
+            <b style={{ fontFamily: 'var(--serif)', fontSize: '19px', color: 'var(--navy)', lineHeight: 1 }}>SAHARA</b>
+            <small style={{ display: 'block', fontSize: '11px', color: 'var(--coral)', fontFamily: 'var(--script)', marginTop: '1px' }}>
+              जब कोई नहीं, तब सहारा
+            </small>
+          </div>
         </div>
+        <a
+          href="tel:14416"
+          className="btn btn-danger btn-sm"
+          style={{ textDecoration: 'none', borderRadius: '999px', padding: '6px 12px', fontSize: '11.5px', fontWeight: 700, gap: '4px' }}
+        >
+          <PhoneCall size={12} /> 14416
+        </a>
       </div>
 
       {/* Hero Card */}

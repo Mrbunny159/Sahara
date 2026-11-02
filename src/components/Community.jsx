@@ -80,7 +80,7 @@ export default function Community({ userName, onShowToast }) {
   return (
     <div>
       <div style={{ marginBottom: '22px' }}>
-        <h1 style={{ fontSize: '32px', color: 'var(--navy)' }}>Support Circles</h1>
+        <h1 style={{ fontSize: 'clamp(24px, 4vw, 32px)', color: 'var(--navy)' }}>Support Circles</h1>
         <div className="muted" style={{ fontSize: '15px', marginTop: '4px' }}>
           A safe, empathetic community for shared experiences across every chapter of life.
         </div>

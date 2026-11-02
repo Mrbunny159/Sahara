@@ -31,9 +31,9 @@ export default function Journal({ entries, onSaveEntry, onDeleteEntry, onShowToa
 
   return (
     <div>
-      <div style={{ marginBottom: '26px' }}>
-        <h1 style={{ fontSize: '32px', color: 'var(--navy)' }}>Private Journal</h1>
-        <div className="muted" style={{ fontSize: '15px', marginTop: '4px' }}>
+      <div style={{ marginBottom: '22px' }}>
+        <h1 style={{ fontSize: 'clamp(24px, 4vw, 32px)', color: 'var(--navy)' }}>Private Journal</h1>
+        <div className="muted" style={{ fontSize: 'clamp(13.5px, 2vw, 15px)', marginTop: '4px' }}>
           Writing untangles racing thoughts. Encrypted and accessible only by you.
         </div>
       </div>

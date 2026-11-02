@@ -25,7 +25,7 @@ export default function ProfilePrivacy({
   return (
     <div>
       <div style={{ marginBottom: '26px' }}>
-        <h1 style={{ fontSize: '32px', color: 'var(--navy)' }}>Profile & Privacy</h1>
+        <h1 style={{ fontSize: 'clamp(24px, 4vw, 32px)', color: 'var(--navy)' }}>Profile & Privacy</h1>
         <div className="muted" style={{ fontSize: '15px', marginTop: '4px' }}>
           Manage your identity and retain total ownership over your sanctuary data.
         </div>

@@ -47,9 +47,9 @@ export default function MoodTracker({ moods, onSaveMood, onDeleteMood, onShowToa
 
   return (
     <div>
-      <div style={{ marginBottom: '26px' }}>
-        <h1 style={{ fontSize: '32px', color: 'var(--navy)' }}>Mood Check-in</h1>
-        <div className="muted" style={{ fontSize: '15px', marginTop: '4px' }}>
+      <div style={{ marginBottom: '22px' }}>
+        <h1 style={{ fontSize: 'clamp(24px, 4vw, 32px)', color: 'var(--navy)' }}>Mood Check-in</h1>
+        <div className="muted" style={{ fontSize: 'clamp(13.5px, 2vw, 15px)', marginTop: '4px' }}>
           Naming how you feel is the first step toward lightness. There is no wrong answer.
         </div>
       </div>
